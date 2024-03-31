@@ -1,12 +1,19 @@
 "use client";
+import useSidebar from "@/store/useSideBar";
 import { Fade } from "hamburger-react";
-import { useState } from "react";
 
 export default function Hamburger() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { setOpenSide, isOpen } = useSidebar();
+
   return (
     <button>
-      <Fade color="#fff" rounded size={20} />
+      <Fade
+        color="#fff"
+        rounded
+        size={20}
+        toggle={setOpenSide}
+        toggled={isOpen}
+      />
     </button>
   );
 }

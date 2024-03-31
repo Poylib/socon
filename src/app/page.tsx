@@ -1,10 +1,13 @@
 import Carousel from "./components/main/Carousel";
+import SideNav from "./components/navigations/SideNav";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <Carousel />
-    </main>
+    <>
+      <main className={styles.main}>
+        <Carousel />
+      </main>
+    </>
   );
 }

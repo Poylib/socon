@@ -20,9 +20,6 @@ export default function Nav() {
         </nav>
         <Hamburger />
       </header>
-      {/* <div
-        style={{ backgroundColor: "red", width: "100vw", height: "100vh" }}
-      ></div> */}
     </>
   );
 }
