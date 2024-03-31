@@ -8,7 +8,7 @@ export default function Hamburger() {
   return (
     <button>
       <Fade
-        color="#fff"
+        color={isOpen ? "#1a2637" : "#fff"}
         rounded
         size={20}
         toggle={setOpenSide}

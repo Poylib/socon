@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { NAV_CATEGORY } from "@/constants/navigation";
 import Hamburger from "./Hamburger";
+import Logo from "./Logo";
 
 import styles from "./Nav.module.scss";
 
@@ -8,7 +9,7 @@ export default function Nav() {
   return (
     <>
       <header className={styles.container}>
-        <Link href={"/"}>socon</Link>
+        <Logo />
         <nav>
           <ul>
             {NAV_CATEGORY.map((item, idx) => (

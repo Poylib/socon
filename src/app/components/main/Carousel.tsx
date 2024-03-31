@@ -12,7 +12,7 @@ export default function Carousel() {
           fill={true}
           // width={300}
           src={main_0}
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
           alt="메인사진1"
           placeholder="blur"
         />
@@ -22,7 +22,7 @@ export default function Carousel() {
           fill={true}
           // width={300}
           src={main_1}
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
           alt="메인사진2"
           placeholder="blur"
         />

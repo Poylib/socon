@@ -1,5 +1,4 @@
 import Carousel from "./components/main/Carousel";
-import SideNav from "./components/navigations/SideNav";
 import styles from "./page.module.css";
 
 export default function Home() {
