@@ -1,0 +1,42 @@
+.container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 100px;
+  width: auto;
+  background-color: transparent;
+  z-index: 100;
+
+  a {
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  nav {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    ul {
+      display: flex;
+
+      li {
+        margin-right: 1.25rem;
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    nav {
+      display: none;
+    }
+  }
+}
