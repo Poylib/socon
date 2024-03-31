@@ -14,6 +14,7 @@ export default function Carousel() {
           src={main_0}
           objectFit="cover"
           alt="메인사진1"
+          placeholder="blur"
         />
       </section>
       <section className={styles.container}>
@@ -22,7 +23,8 @@ export default function Carousel() {
           // width={300}
           src={main_1}
           objectFit="cover"
-          alt="메인사진1"
+          alt="메인사진2"
+          placeholder="blur"
         />
       </section>
       <section
