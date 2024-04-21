@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+  .fadeIn {
+    animation: scale 2500ms ease-in-out forwards;
+  }
+  @keyframes scale {
+    to {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "./globals.css";
 
-import "../styles/global.scss";
 import Nav from "./components/navigations";
 import SideNav from "./components/navigations/SideNav";
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className="scroll-smooth">
       <body className={inter.className}>
         <Nav />
         <SideNav />
