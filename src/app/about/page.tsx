@@ -27,7 +27,7 @@ export default function About() {
       <div className="fixed top-0 left-10 bg-blue-400 z-10">
         <p>현재 스크롤 위치: {scrollY}px</p>
         {/* 화면의 전체 높이는 window.innerHeight로 얻을 수 있습니다. */}
-        <p>100vh: {window.innerHeight}px</p>
+        {/* <p>100vh: {window.innerHeight}px</p> */}
       </div>
       <div className="relative h-[90vh] ">
         <Image //
