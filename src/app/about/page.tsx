@@ -2,34 +2,52 @@
 import Image from "next/image";
 
 import main_3 from "@@/main/main_3.png";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function About() {
-  const [scrollY, setScrollY] = useState(0);
+  const TopRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (TopRef.current) {
+        const ViewHeight = window.innerHeight;
+        const Y = window.scrollY;
+        console.log("🚀 ~ handleScroll ~ ViewHeight:", ViewHeight * 0.2);
+
+        console.log("🚀 ~ handleScroll ~ Y:", Y);
+        const divStyle = TopRef.current.style;
+
+        //스크롤 움직이면 padding 생성
+        if (Y > 10) {
+          divStyle.width = `95%`;
+        } else divStyle.width = `100%`;
+
+        // 상단 이미지 고정
+        if (Y > ViewHeight * 0.2) {
+          divStyle.transform = `translateY(${Y}px)`;
+        }
+
+        // if (ViewHeight * 0.3 < Y) {
+        // } else {
+        //   divStyle.transform = `translateY(-${0}px)`;
+        // }
+      }
     };
 
-    // 컴포넌트가 마운트될 때 스크롤 이벤트를 추가합니다.
     window.addEventListener("scroll", handleScroll);
-    const documentHeight = document.documentElement.scrollHeight;
-    console.log("🚀 ~ useEffect ~ documentHeight:", documentHeight);
 
-    // 컴포넌트가 언마운트될 때 스크롤 이벤트를 제거합니다.
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
-    <div>
-      <div className="fixed top-0 left-10 bg-blue-400 z-10">
-        <p>현재 스크롤 위치: {scrollY}px</p>
-        {/* 화면의 전체 높이는 window.innerHeight로 얻을 수 있습니다. */}
-        {/* <p>100vh: {window.innerHeight}px</p> */}
-      </div>
-      <div className="relative h-[90vh] ">
+    <div className="h-[400vh]">
+      <div
+        ref={TopRef}
+        className="relative mx-auto h-[80vh] transition duration-500 ease-in-out translate-y-[20vh] "
+        style={{ transition: "width 0.5s ease-in-out" }}
+      >
         <Image //
           fill={true}
           src={main_3}
@@ -38,14 +56,10 @@ export default function About() {
           placeholder="blur"
         />
       </div>
-      <div className="relative h-[90vh]">
-        <Image //
-          fill={true}
-          src={main_3}
-          style={{ objectFit: "cover" }}
-          alt="메인사진2"
-          placeholder="blur"
-        />
+      <div className="relative h-[90vh] w-[50%] mx-auto">
+        <div className="flex flex-col items-center bg-green-700 h-fit opacity-50">
+          <h1>ABOUT</h1>
+        </div>
       </div>
     </div>
   );
