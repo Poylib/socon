@@ -9,20 +9,6 @@ export default function Carousel() {
   return (
     <div className="snap-y snap-mandatory h-screen w-screen overflow-scroll">
       <section className="relative flex items-center justify-center h-screen w-full overflow-hidden snap-always snap-center">
-        {/* <FadeInSection /> */}
-        <Image //
-          fill={true}
-          src={main_2}
-          className={styles.fadeIn}
-          style={{
-            objectFit: "cover",
-            zIndex: 2,
-          }}
-          alt="메인사진1"
-          placeholder="blur"
-        />
-      </section>
-      <section className="relative flex items-center justify-center h-screen w-full overflow-hidden snap-always snap-center">
         <Image //
           fill={true}
           src={main_1}
