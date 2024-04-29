@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { useScroll, useTransform, motion, delay } from "framer-motion";
 import { useRef } from "react";
@@ -22,7 +23,7 @@ export default function TopScroll() {
   });
 
   const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
-  const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
+  const scale4 = useTransform(scrollYProgress, [0, 1], [1, 3]);
   const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
   const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
   const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
