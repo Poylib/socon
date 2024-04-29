@@ -17,7 +17,7 @@ export default function Carousel() {
           placeholder="blur"
         />
       </section>
-      <section className="relative flex items-center justify-center h-screen w-full overflow-hidden snap-always snap-center">
+      {/* <section className="relative flex items-center justify-center h-screen w-full overflow-hidden snap-always snap-center">
         <Image //
           fill={true}
           src={main_2}
@@ -25,7 +25,7 @@ export default function Carousel() {
           alt="메인사진2"
           placeholder="blur"
         />
-      </section>
+      </section> */}
     </div>
   );
 }

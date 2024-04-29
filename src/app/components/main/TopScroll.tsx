@@ -62,7 +62,12 @@ export default function TopScroll() {
       <div className={styles.sticky}>
         {pictures.map(({ src, scale }, index) => {
           return (
-            <motion.div key={index} style={{ scale }} className={styles.el}>
+            <motion.div
+              key={index}
+              style={{ scale }}
+              className={styles.el}
+              transition={{ delay: 0.2 }}
+            >
               <div className={styles.imageContainer}>
                 <Image src={src} fill alt="image" placeholder="blur" />
               </div>
