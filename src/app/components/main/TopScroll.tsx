@@ -10,7 +10,6 @@ import Picture3 from "@@/main/3.jpg";
 import Picture4 from "@@/main/4.jpg";
 import Picture5 from "@@/main/5.jpg";
 import Picture6 from "@@/main/6.jpg";
-// import Picture7 from "@@/main/7.jpeg";
 import Picture7 from "@@/main/main_1.png";
 
 import styles from "./TopScroll.module.scss";
@@ -71,7 +70,14 @@ export default function TopScroll() {
               transition={{ delay: 0.2 }}
             >
               <div className={styles.imageContainer}>
-                <Image src={src} fill alt="image" placeholder="blur" />
+                <Image
+                  src={src}
+                  fill
+                  alt="image"
+                  placeholder="blur"
+                  style={{ objectFit: "cover" }}
+                  sizes="25vw"
+                />
               </div>
             </motion.div>
           );
