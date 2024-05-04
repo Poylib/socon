@@ -21,8 +21,8 @@ export default function Home() {
 
   return (
     <>
-      <main className="pt-[10vh] bg-[#222]" ref={appRef}>
-        <TopScroll />
+      <main className=" bg-[#222]" ref={appRef}>
+        {/* <TopScroll /> */}
         <Carousel />
       </main>
     </>

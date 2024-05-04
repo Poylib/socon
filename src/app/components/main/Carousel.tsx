@@ -3,131 +3,79 @@ import gsap, { ScrollTrigger } from "gsap/all";
 import { useEffect, useRef } from "react";
 
 import main_1 from "@@/main/main_1.png";
-import main_2 from "@@/main/main_2.png";
-import useMainAnimation from "@/store/useMainAnimation";
-import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import useMainAnimation from "@/store/useMainAnimation";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(ScrollTrigger, useGSAP, ScrollToPlugin);
 
 export default function Carousel() {
   const { setCurrentBg } = useMainAnimation();
   let containerRef = useRef(null);
-  const main = useRef();
 
   useGSAP(
     () => {
-      const boxes = gsap.utils.toArray(".box");
-      boxes.forEach((box) => {
-        gsap.to(box, {
-          x: 150,
-          backgroundColor: "red",
-          scrollTrigger: {
-            trigger: box,
-            pin: true,
-            start: "bottom bottom",
-            end: "top 20%",
-            scrub: true,
-            // markers: true,
+      const panels = gsap.utils.toArray(".panel");
+
+      const observer = ScrollTrigger.normalizeScroll(true);
+      let scrollTween;
+
+      if (!observer) return;
+      // on touch devices, ignore touchstart events if there's an in-progress tween so that touch-scrolling doesn't interrupt and make it wonky
+      document.addEventListener(
+        "touchstart",
+        (e) => {
+          if (scrollTween) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+          }
+        },
+        { capture: true, passive: false }
+      );
+
+      function goToSection(i) {
+        scrollTween = gsap.to(window, {
+          scrollTo: { y: i * window.innerHeight, autoKill: false },
+          onStart: () => {
+            observer.disable();
+            observer.enable();
           },
+          duration: 1,
+          onComplete: () => (scrollTween = null),
+          overwrite: true,
+        });
+      }
+
+      panels.forEach((panel, i) => {
+        ScrollTrigger.create({
+          trigger: panel,
+          start: "top bottom",
+          end: "+=200%",
+          onToggle: (self) => self.isActive && !scrollTween && goToSection(i),
         });
       });
+      ScrollTrigger.create({
+        start: 0,
+        end: "max",
+        snap: 1 / (panels.length - 1),
+      });
     },
-    { scope: main }
+    { scope: containerRef }
   );
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     gsap.registerPlugin(ScrollTrigger);
-  //   }
-  //   gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: containerRef.current,
-  //       start: "+=200 90%",
-  //       end: "+=200",
-  //       scrub: true,
-  //       markers: true,
-  //       pinSpacing: false,
-  //       onEnter: () => {
-  //         setCurrentBg("#fff");
-  //         // gsap.to(textRef.current, {
-  //         //   color: "#ffca28",
-  //         //   duration: 1,
-  //         // });
-  //       },
-  //       onLeaveBack: () => {
-  //         setCurrentBg("#222");
-  //         // gsap.to(textRef.current, {
-  //         //   color: "#000",
-  //         //   duration: 1,
-  //         // });
-  //       },
-  //     },
-  //   });
-  // }, []);
 
   return (
-    <div
-      id="container"
-      className="h-[500vh] overflow-hidden"
-      ref={containerRef}
-    >
-      <section className="h-screen w-screen">
-        <p>blabla</p>
+    <div className="h-[500vh] overflow-hidden" ref={containerRef}>
+      <section className="panel bg-red-200 h-screen">
+        <p>This is page 1</p>
       </section>
-      <div className="section flex-center column" ref={main}>
-        <div className="box" style={{ backgroundColor: "blue" }}>
-          box
-        </div>
-        <div className="box" style={{ backgroundColor: "blue" }}>
-          box
-        </div>
-        <div className="box" style={{ backgroundColor: "blue" }}>
-          box
-        </div>
-      </div>
-      <section className="relative flex items-center justify-center h-screen w-screen overflow-hidden">
-        <Image //
-          fill={true}
-          src={main_1}
-          style={{ objectFit: "cover" }}
-          alt="메인사진2"
-          placeholder="blur"
-        />
+      <section className="panel bg-gray-300 h-screen">
+        <p>This is page 2</p>
       </section>
-      <section className="relative flex items-center justify-center h-screen w-screen overflow-hidden">
-        <Image //
-          fill={true}
-          src={main_1}
-          style={{ objectFit: "cover" }}
-          alt="메인사진2"
-          placeholder="blur"
-        />
+      <section className="panel bg-blue-200 h-screen">
+        <p>This is page 3</p>
       </section>
-      <section className="relative flex items-center justify-center h-screen w-screen overflow-hidden">
-        <Image //
-          fill={true}
-          src={main_1}
-          style={{ objectFit: "cover" }}
-          alt="메인사진2"
-          placeholder="blur"
-        />
-      </section>
-      <section className="relative flex items-center justify-center h-screen w-screen overflow-hidden">
-        <Image //
-          fill={true}
-          src={main_1}
-          style={{ objectFit: "cover" }}
-          alt="메인사진2"
-          placeholder="blur"
-        />
-      </section>
-      <section className="relative flex items-center justify-center h-screen w-screen overflow-hidden">
-        <Image //
-          fill={true}
-          src={main_1}
-          style={{ objectFit: "cover" }}
-          alt="메인사진2"
-          placeholder="blur"
-        />
+      <section className="panel bg-yellow-200 h-screen">
+        <p>This is page 4</p>
       </section>
     </div>
   );
