@@ -53,7 +53,7 @@ export default function Carousel() {
       isThrottled.current = true;
       setTimeout(() => {
         isThrottled.current = false;
-      }, 1000); // 1초 동안 쓰로틀링
+      }, 2000); // 1초 동안 쓰로틀링
     }
   };
 
@@ -84,14 +84,14 @@ export default function Carousel() {
     const intervalId = setInterval(() => {
       // 반복 실행하고자 하는 함수
       handlePanel("up");
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(intervalId);
   }, [panel]);
 
   return (
     <div
-      className={`relative flex flex-col justify-center items-center h-[100vh] w-screen transition duration-1000`}
+      className={`relative flex flex-col justify-center items-center h-[100vh] w-screen transition duration-[2s]`}
       style={{ backgroundColor: pictures[panel].color }}
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
@@ -106,7 +106,7 @@ export default function Carousel() {
               className={`absolute h-[100%] w-[100%]`}
               style={{
                 zIndex: selected ? 10 : 0,
-                transition: selected ? "transform 1s" : "none",
+                transition: selected ? "transform 2s" : "none",
                 visibility:
                   beforeIdx === idx || selected ? undefined : "hidden",
                 transform:

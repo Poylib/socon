@@ -28,8 +28,8 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className} suppressHydrationWarning>
-        <Nav />
         <SideNav />
+        <Nav />
         {children}
       </body>
     </html>
