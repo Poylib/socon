@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={inter.className} suppressHydrationWarning>
+      <body className="overscroll-none" suppressHydrationWarning>
         <SideNav />
         <Nav />
         {children}

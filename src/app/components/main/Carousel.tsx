@@ -9,6 +9,11 @@ import main_4 from "@@/main/main_4.jpeg";
 import main_5 from "@@/main/main_5.jpeg";
 import main_6 from "@@/main/main_6.jpeg";
 
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
+
 export default function Carousel() {
   const { setCurrentBg, panel, setPanel } = useMainAnimation();
   const [beforeIdx, setBeforeIdx] = useState<number>(5);
@@ -96,8 +101,6 @@ export default function Carousel() {
   }, [panel]);
 
   const scrollGesture = useMemo(() => {
-    console.log("🚀 ~ scrollGesture ~ beforeIdx:", beforeIdx);
-    console.log("🚀 ~ scrollGesture ~ panel:", panel);
     if (panel === 0 && beforeIdx === 5) {
       return "down";
     } else if (panel === 5 && beforeIdx === 0) {
@@ -108,10 +111,16 @@ export default function Carousel() {
     else return "up";
   }, [panel, beforeIdx]);
 
+  useGSAP(() => {
+    gsap.to("body", {
+      backgroundColor: pictures[panel].color,
+    });
+  }, [panel]);
+
   return (
     <div
       className={`relative flex flex-col justify-center items-center h-[100dvh] w-screen transition duration-[2s]`}
-      style={{ backgroundColor: pictures[panel].color }}
+      // style={{ backgroundColor: pictures[panel].color }}
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
     >

@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Picture1 from "@@/main/top.png";
 import Picture2 from "@@/main/main_2.jpeg";
@@ -14,7 +15,6 @@ import Picture6 from "@@/main/main_6.jpeg";
 import Picture7 from "@@/main/main_6.jpeg";
 
 import styles from "./TopScroll.module.scss";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -59,7 +59,6 @@ export default function TopScroll() {
         scrub: 1.5,
         start: "top 0%",
         end: "+=250",
-        markers: true,
       },
     });
     pictures.forEach((el, idx) => {
@@ -72,6 +71,20 @@ export default function TopScroll() {
         "<"
       );
     });
+
+    growTl
+      .to(".glowLine", {
+        duration: 0.4,
+        delay: -0.8,
+        opacity: 1,
+        y: 0,
+      })
+      .to(".glowContent", {
+        duration: 0.3,
+        delay: -0.4,
+        opacity: 1,
+        y: 0,
+      });
   });
 
   return (
@@ -79,20 +92,28 @@ export default function TopScroll() {
       <div className={`sticky ${styles.sticky}`}>
         {pictures.map(({ src }, index) => {
           return (
-            <div key={index} className={`picture${index} ${styles.el}`}>
-              <div className={`${styles.imageContainer}`}>
-                <Image
-                  src={src}
-                  fill
-                  alt="image"
-                  placeholder="blur"
-                  style={{ objectFit: "cover" }}
-                  sizes="100vw"
-                />
+            <Fragment key={index}>
+              <div className={`picture${index} ${styles.el}`}>
+                <div className={`${styles.imageContainer}`}>
+                  <Image
+                    src={src}
+                    fill
+                    alt="image"
+                    placeholder="blur"
+                    style={{ objectFit: "cover" }}
+                    sizes="40vw"
+                  />
+                </div>
               </div>
-            </div>
+            </Fragment>
           );
         })}
+        <span className="glowLine absolute top-[120px] transform translate-y-[40px] opacity-0 text-white">
+          ABOUT
+        </span>
+        <span className="glowContent absolute top-[160px] transform translate-y-[40px] opacity-0 text-white">
+          socon이 추구하는 가치. 꿈은 없고 그냥 놀고싶어요
+        </span>
       </div>
     </div>
   );

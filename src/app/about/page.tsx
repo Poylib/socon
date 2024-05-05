@@ -1,28 +1,36 @@
 "use client";
-import Image from "next/image";
 
-import main from "@@/main/main_0.png";
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import TopScroll from "../components/main/TopScroll";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 export default function About() {
+  const mainRef = useRef(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: mainRef.current,
+        start: "top top",
+        end: `${window.innerHeight * 2} ${window.innerHeight * 0.8}`,
+        scrub: 1,
+      },
+    });
+
+    tl.to("body", {
+      backgroundColor: "#3E3E3B",
+    });
+  });
+
   return (
-    <main className="pt-[70px] h-[200dvh]">
-      {/* <div className="flex items-center justify-center b">
-        <h2 className="text-[5rem] tracking-wider">SOCON</h2>
-      </div> */}
+    <main ref={mainRef} className="pt-[70px] h-[500dvh]">
       <TopScroll />
-      {/* <div>
-        <Image
-          src={main}
-          style={{ objectFit: "cover" }}
-          alt={`메인사진`}
-          placeholder="blur"
-          sizes="25vw"
-        />
-      </div> */}
+
       <span>blabla</span>
     </main>
   );
