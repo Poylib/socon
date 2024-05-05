@@ -1,6 +1,6 @@
 import useMainAnimation from "@/store/useMainAnimation";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import main_1 from "@@/main/main_1.jpeg";
 import main_2 from "@@/main/main_2.jpeg";
@@ -11,7 +11,7 @@ import main_6 from "@@/main/main_6.jpeg";
 
 export default function Carousel() {
   const { setCurrentBg, panel, setPanel } = useMainAnimation();
-  const [beforeIdx, setBeforeIdx] = useState<null | number>(null);
+  const [beforeIdx, setBeforeIdx] = useState<number>(5);
 
   const pictures = [
     { src: main_1, color: "#3E3E3B" },
@@ -45,9 +45,9 @@ export default function Carousel() {
   const handleWheel = (e) => {
     if (!isThrottled.current) {
       if (e.deltaY < 0) {
-        handlePanel("up");
-      } else if (e.deltaY > 0) {
         handlePanel("down");
+      } else if (e.deltaY > 0) {
+        handlePanel("up");
       }
 
       isThrottled.current = true;
@@ -64,10 +64,17 @@ export default function Carousel() {
     const handleTouchMove = (moveEvent) => {
       const currentY = moveEvent.touches[0].clientY;
 
-      if (currentY < startY) {
-        handlePanel("up");
-      } else if (currentY > startY) {
-        handlePanel("down");
+      if (!isThrottled.current) {
+        if (currentY < startY) {
+          handlePanel("up");
+        } else if (currentY > startY) {
+          handlePanel("down");
+        }
+
+        isThrottled.current = true;
+        setTimeout(() => {
+          isThrottled.current = false;
+        }, 2000); // 1초 동안 쓰로틀링
       }
     };
 
@@ -82,13 +89,26 @@ export default function Carousel() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      // 반복 실행하고자 하는 함수
       handlePanel("up");
     }, 5000);
 
     return () => clearInterval(intervalId);
   }, [panel]);
 
+  const scrollGesture = useMemo(() => {
+    console.log("🚀 ~ scrollGesture ~ beforeIdx:", beforeIdx);
+    console.log("🚀 ~ scrollGesture ~ panel:", panel);
+    if (panel === 0 && beforeIdx === 5) {
+      return "down";
+    } else if (panel === 5 && beforeIdx === 0) {
+      return "up";
+    }
+
+    if (panel > beforeIdx) return "down";
+    else return "up";
+  }, [panel, beforeIdx]);
+
+  console.log("🚀 ~ scrollGesture ~ scrollGesture:", scrollGesture);
   return (
     <div
       className={`relative flex flex-col justify-center items-center h-[100vh] w-screen transition duration-[2s]`}
@@ -101,6 +121,7 @@ export default function Carousel() {
       >
         {pictures.map((el, idx) => {
           const selected = idx === panel;
+
           return (
             <div
               className={`absolute h-[100%] w-[100%]`}
@@ -112,7 +133,9 @@ export default function Carousel() {
                 transform:
                   selected || beforeIdx === idx
                     ? "translate(0,0%) translate3d(0px,0px,0px)"
-                    : "translate(0,100%)",
+                    : `translate(0,${
+                        scrollGesture === "up" ? "-100%" : "100%"
+                      })`,
               }}
               key={`${idx}`}
             >
