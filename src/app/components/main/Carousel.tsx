@@ -108,23 +108,22 @@ export default function Carousel() {
     else return "up";
   }, [panel, beforeIdx]);
 
-  console.log("🚀 ~ scrollGesture ~ scrollGesture:", scrollGesture);
   return (
     <div
-      className={`relative flex flex-col justify-center items-center h-[100vh] w-screen transition duration-[2s]`}
+      className={`relative flex flex-col justify-center items-center h-[100dvh] w-screen transition duration-[2s]`}
       style={{ backgroundColor: pictures[panel].color }}
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
     >
       <div
-        className={`absolute  w-[50%] mx-[280px] h-[60%] overflow-hidden bg-red-200`}
+        className={`absolute  w-[60%] mx-[280px] h-[70%] md:h-[560px] md:w-[400px] max-md:max-h-[392px] max-md:max-w-[280px] overflow-hidden bg-red-200`}
       >
         {pictures.map((el, idx) => {
           const selected = idx === panel;
 
           return (
             <div
-              className={`absolute h-[100%] w-[100%]`}
+              className={`absolute h-[100%] w-[100%] md:h-[560px] md:w-[400px] max-md:max-h-[392px] max-md:max-w-[280px]`}
               style={{
                 zIndex: selected ? 10 : 0,
                 transition: selected ? "transform 2s" : "none",
