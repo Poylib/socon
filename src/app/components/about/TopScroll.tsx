@@ -32,7 +32,7 @@ export default function TopScroll() {
     },
     {
       src: Picture3,
-      scale: 6,
+      scale: 5,
     },
     {
       src: Picture4,
@@ -40,15 +40,23 @@ export default function TopScroll() {
     },
     {
       src: Picture5,
-      scale: 6,
+      scale: 5,
     },
     {
       src: Picture6,
-      scale: 8,
+      scale: 5,
     },
     {
-      src: Picture7,
-      scale: 9,
+      src: Picture5,
+      scale: 5,
+    },
+    {
+      src: Picture2,
+      scale: 5,
+    },
+    {
+      src: Picture3,
+      scale: 5,
     },
   ];
 
@@ -66,16 +74,16 @@ export default function TopScroll() {
         `.picture${idx}`,
         {
           duration: 1,
-          scale: el.scale,
+          scale: 4,
         },
         "<"
       );
     });
 
     growTl
-      .to(".glowLine", {
+      .to(".glowTitle", {
         duration: 0.4,
-        delay: -0.8,
+        delay: -0.7,
         opacity: 1,
         y: 0,
       })
@@ -108,7 +116,7 @@ export default function TopScroll() {
             </Fragment>
           );
         })}
-        <span className="glowLine absolute top-[120px] transform translate-y-[40px] opacity-0 text-white">
+        <span className="glowTitle absolute top-[120px] transform translate-y-[40px] opacity-0 text-white">
           ABOUT
         </span>
         <span className="glowContent absolute top-[160px] transform translate-y-[40px] opacity-0 text-white">

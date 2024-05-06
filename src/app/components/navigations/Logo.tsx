@@ -1,18 +1,30 @@
 "use client";
+
+import Link from "next/link";
+import { useMemo } from "react";
+
 import useMainAnimation from "@/store/useMainAnimation";
 import useSidebar from "@/store/useSideBar";
-import Link from "next/link";
+import white_logo from "@@/nav/logo_white.png";
+import black_logo from "@@/nav/logo_black.png";
+import Image from "next/image";
 
 export default function Logo() {
   const { currentColor } = useMainAnimation();
   const { isOpen } = useSidebar();
+
+  const logo = useMemo(() => {
+    if (currentColor === "#EBECED") return white_logo;
+    else return black_logo;
+  }, [currentColor]);
+
   return (
     <Link
       href={"/"}
       className="transition-colors duration-2000"
       style={{ color: isOpen ? "1a2637" : currentColor }}
     >
-      socon
+      <Image src={logo} className="w-10 md:w-14" alt="socon logo" />
     </Link>
   );
 }

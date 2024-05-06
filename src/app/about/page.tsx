@@ -5,11 +5,21 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TopScroll from "../components/about/TopScroll";
+import useMainAnimation from "@/store/useMainAnimation";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function About() {
   const mainRef = useRef(null);
+  const { setCurrentColor } = useMainAnimation();
+
+  useEffect(() => {
+    document.body.style.backgroundColor = "black";
+    setCurrentColor("white");
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
+  }, []);
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -22,7 +32,7 @@ export default function About() {
     });
 
     tl.to("body", {
-      backgroundColor: "#3E3E3B",
+      backgroundColor: "#fff",
     });
   });
 

@@ -29,49 +29,65 @@
       }
       &:nth-of-type(2) {
         .imageContainer {
-          top: -40vh;
-          left: 5vw;
-          width: 35vw;
-          height: 50vh;
+          top: -29vh;
+          left: -30vw;
+          width: 30vw;
+          height: 30vh;
         }
       }
       &:nth-of-type(3) {
         .imageContainer {
-          top: -10vh;
-          left: -35vw;
-          width: 40vw;
-          height: 45vh;
+          top: -29vh;
+          left: 0vw;
+          width: 25vw;
+          height: 30vh;
         }
       }
       &:nth-of-type(4) {
         .imageContainer {
-          left: 37.5vw;
-          width: 45vw;
-          height: 25vh;
+          top: -29vh;
+          right: -30vw;
+          width: 30vw;
+          height: 30vh;
         }
       }
       &:nth-of-type(5) {
         .imageContainer {
-          top: 27.5vh;
-          left: 5vw;
-          width: 20vw;
+          top: 0vh;
+          left: -30vw;
+          width: 30vw;
           height: 25vh;
         }
       }
       &:nth-of-type(6) {
         .imageContainer {
-          top: 27.5vh;
-          left: -22.5vw;
+          top: 0vh;
+          right: -30vw;
           width: 30vw;
           height: 25vh;
         }
       }
       &:nth-of-type(7) {
         .imageContainer {
-          top: 22.5vh;
-          left: 25vw;
-          width: 15vw;
-          height: 15vh;
+          top: 29vh;
+          left: -30vw;
+          width: 30vw;
+          height: 30vh;
+        }
+      }
+      &:nth-of-type(8) {
+        .imageContainer {
+          top: 29vh;
+          width: 25vw;
+          height: 30vh;
+        }
+      }
+      &:nth-of-type(9) {
+        .imageContainer {
+          top: 29vh;
+          right: -30vw;
+          width: 30vw;
+          height: 30vh;
         }
       }
     }

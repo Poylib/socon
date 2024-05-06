@@ -16,6 +16,10 @@ import main_3 from "@@/main/main_3.jpeg";
 import main_4 from "@@/main/main_4.jpeg";
 import main_5 from "@@/main/main_5.jpeg";
 import main_6 from "@@/main/main_6.jpeg";
+import studio_white from "@@/main/STUDIO_white.png";
+import studio_black from "@@/main/STUDIO_black.png";
+import concretus_white from "@@/main/Concretus_white.png";
+import concretus_black from "@@/main/Concretus_black.png";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -106,8 +110,8 @@ export default function Carousel() {
     }, 5000);
 
     // global color
-    if (panel < 2) setCurrentColor("#EBECED");
-    else setCurrentColor("#3E3E3B");
+    if (panel < 2) setCurrentColor("white");
+    else setCurrentColor("black");
 
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -137,39 +141,60 @@ export default function Carousel() {
       onTouchStart={handleTouchStart}
     >
       <div
-        className={`absolute  w-[60%] mx-[280px] h-[70%] md:h-[560px] md:w-[400px] max-md:h-[392px] max-md:w-[280px] overflow-hidden bg-red-200`}
+        className={`absolute md:h-[560px] md:w-[400px] max-md:h-[392px] max-md:w-[280px]`}
       >
-        {pictures.map((el, idx) => {
-          const selected = idx === panel;
-
-          return (
-            <div
-              className={`absolute h-[100%] w-[100%] md:h-[560px] md:w-[400px]`}
-              style={{
-                zIndex: selected ? 10 : 0,
-                transition: selected ? "transform 2s" : "none",
-                visibility:
-                  beforeIdx === idx || selected ? undefined : "hidden",
-                transform:
-                  selected || beforeIdx === idx
-                    ? "translate(0,0%) translate3d(0px,0px,0px)"
-                    : `translate(0,${
-                        scrollGesture === "up" ? "-100%" : "100%"
-                      })`,
-              }}
-              key={`${idx}`}
-            >
-              <Image //
-                fill={true}
-                src={el.src}
-                style={{ objectFit: "cover" }}
-                alt={`메인사진${idx}`}
-                placeholder="blur"
-                sizes="25vw"
-              />
-            </div>
-          );
-        })}
+        <div
+          className="absolute top-[-14%] w-[350px] left-[-12%] md:top-[-13%] md:w-[480px] md:left-[-10%] z-0"
+          style={{ color: currentColor }}
+        >
+          <Image
+            src={currentColor === "black" ? studio_black : studio_white}
+            alt="studio text"
+          />
+        </div>
+        <div
+          className="absolute bottom-[-13%] left-[-19%] w-[390px] md:bottom-[-14%] md:left-[-22%] md:w-[580px] z-0"
+          style={{ color: currentColor }}
+        >
+          <Image
+            src={currentColor === "black" ? concretus_black : concretus_white}
+            alt="studio text"
+          />
+        </div>
+        <div
+          className={`absolute  md:h-[560px] md:w-[400px] max-md:h-[392px] max-md:w-[280px] overflow-hidden`}
+        >
+          {pictures.map((el, idx) => {
+            const selected = idx === panel;
+            return (
+              <div
+                className={`absolute h-[100%] w-[100%] md:h-[560px] md:w-[400px]`}
+                style={{
+                  zIndex: selected ? 10 : 0,
+                  transition: selected ? "transform 2s" : "none",
+                  visibility:
+                    beforeIdx === idx || selected ? undefined : "hidden",
+                  transform:
+                    selected || beforeIdx === idx
+                      ? "translate(0,0%) translate3d(0px,0px,0px)"
+                      : `translate(0,${
+                          scrollGesture === "up" ? "-100%" : "100%"
+                        })`,
+                }}
+                key={`${idx}`}
+              >
+                <Image //
+                  fill={true}
+                  src={el.src}
+                  style={{ objectFit: "cover" }}
+                  alt={`메인사진${idx}`}
+                  placeholder="blur"
+                  sizes="25vw"
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
       <MainFooter />
       {/* for mobile */}
@@ -184,7 +209,7 @@ export default function Carousel() {
         <span className="text-gray-500">06</span>
       </div>
       {/* for web */}
-      <div className="absolute flex flex-col justify-center items-center top-[48%] left-4 max-md:hidden">
+      <div className="absolute flex flex-col justify-center items-center top-[48%] right-5 max-md:hidden">
         <span
           className="transition-colors duration-2000"
           style={{ color: currentColor }}
