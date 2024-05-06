@@ -116,10 +116,13 @@ export default function TopScroll() {
             </Fragment>
           );
         })}
-        <span className="glowTitle absolute top-[120px] transform translate-y-[40px] opacity-0 text-white">
+        <span
+          className="glowTitle absolute top-[220px] transform translate-y-[120px] opacity-0 text-white text-3xl font-semibold"
+          style={{ letterSpacing: 5 }}
+        >
           ABOUT
         </span>
-        <span className="glowContent absolute top-[160px] transform translate-y-[40px] opacity-0 text-white">
+        <span className="glowContent absolute top-[280px] transform translate-y-[140px] opacity-0 text-white">
           socon이 추구하는 가치. 꿈은 없고 그냥 놀고싶어요
         </span>
       </div>

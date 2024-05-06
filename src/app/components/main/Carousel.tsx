@@ -219,6 +219,12 @@ export default function Carousel() {
         <div className="h-[1px] w-10 bg-gray-500 my-3" />
         <span className="text-gray-500">06</span>
       </div>
+      <span
+        className="absolute top-[50%] left-[-2%] transform -rotate-90 max-md:hidden transition-colors duration-2000"
+        style={{ color: currentColor }}
+      >
+        studio_socon
+      </span>
     </div>
   );
 }
