@@ -1,11 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import { NAV_CATEGORY } from "@/constants/navigation";
 import Hamburger from "./Hamburger";
 import Logo from "./Logo";
 
 import styles from "./Nav.module.scss";
+import useMainAnimation from "@/store/useMainAnimation";
 
 export default function Nav() {
+  const { currentColor } = useMainAnimation();
   return (
     <>
       <header className={styles.container}>
@@ -14,7 +18,13 @@ export default function Nav() {
           <ul>
             {NAV_CATEGORY.map((item, idx) => (
               <li key={`${idx}_${item.name}`}>
-                <Link href={item.href}>{item.name}</Link>
+                <Link
+                  href={item.href}
+                  className="transition-colors duration-2000"
+                  style={{ color: currentColor }}
+                >
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>

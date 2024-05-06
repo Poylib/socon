@@ -1,6 +1,14 @@
+"use client";
 import useMainAnimation from "@/store/useMainAnimation";
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  TouchEvent as TouchEventType,
+  WheelEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import main_1 from "@@/main/main_1.jpeg";
 import main_2 from "@@/main/main_2.jpeg";
@@ -11,11 +19,14 @@ import main_6 from "@@/main/main_6.jpeg";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import MainFooter from "./MainFooter";
+
+type Direction = "up" | "down";
 
 gsap.registerPlugin(useGSAP);
 
 export default function Carousel() {
-  const { setCurrentBg, panel, setPanel } = useMainAnimation();
+  const { panel, setPanel, setCurrentColor, currentColor } = useMainAnimation();
   const [beforeIdx, setBeforeIdx] = useState<number>(5);
 
   const pictures = [
@@ -29,7 +40,7 @@ export default function Carousel() {
 
   const isThrottled = useRef(false);
 
-  const handlePanel = (type: "up" | "down") => {
+  const handlePanel = (type: Direction) => {
     setBeforeIdx(panel);
     if (type === "up") {
       if (panel > 4) {
@@ -47,39 +58,35 @@ export default function Carousel() {
     }
   };
 
-  const handleWheel = (e) => {
+  const handleUserInput = (direction: Direction) => {
     if (!isThrottled.current) {
-      if (e.deltaY < 0) {
-        handlePanel("down");
-      } else if (e.deltaY > 0) {
-        handlePanel("up");
-      }
+      handlePanel(direction);
 
       isThrottled.current = true;
       setTimeout(() => {
         isThrottled.current = false;
-      }, 2000); // 1초 동안 쓰로틀링
+      }, 2000);
     }
   };
 
-  // 터치 이벤트 핸들러
-  const handleTouchStart = (e) => {
+  const handleWheel = (e: WheelEvent<HTMLDivElement>) => {
+    if (e.deltaY < 0) {
+      handleUserInput("down");
+    } else if (e.deltaY > 0) {
+      handleUserInput("up");
+    }
+  };
+
+  const handleTouchStart = (e: TouchEventType<HTMLDivElement>) => {
     const startY = e.touches[0].clientY;
 
-    const handleTouchMove = (moveEvent) => {
+    const handleTouchMove = (moveEvent: TouchEvent) => {
       const currentY = moveEvent.touches[0].clientY;
 
-      if (!isThrottled.current) {
-        if (currentY < startY) {
-          handlePanel("up");
-        } else if (currentY > startY) {
-          handlePanel("down");
-        }
-
-        isThrottled.current = true;
-        setTimeout(() => {
-          isThrottled.current = false;
-        }, 2000); // 1초 동안 쓰로틀링
+      if (currentY < startY) {
+        handleUserInput("up");
+      } else if (currentY > startY) {
+        handleUserInput("down");
       }
     };
 
@@ -93,11 +100,17 @@ export default function Carousel() {
   };
 
   useEffect(() => {
+    // auto carousel
     const intervalId = setInterval(() => {
       handlePanel("up");
     }, 5000);
 
+    // global color
+    if (panel < 2) setCurrentColor("#EBECED");
+    else setCurrentColor("#3E3E3B");
+
     return () => clearInterval(intervalId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [panel]);
 
   const scrollGesture = useMemo(() => {
@@ -120,19 +133,18 @@ export default function Carousel() {
   return (
     <div
       className={`relative flex flex-col justify-center items-center h-[100dvh] w-screen transition duration-[2s]`}
-      // style={{ backgroundColor: pictures[panel].color }}
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
     >
       <div
-        className={`absolute  w-[60%] mx-[280px] h-[70%] md:h-[560px] md:w-[400px] max-md:max-h-[392px] max-md:max-w-[280px] overflow-hidden bg-red-200`}
+        className={`absolute  w-[60%] mx-[280px] h-[70%] md:h-[560px] md:w-[400px] max-md:h-[392px] max-md:w-[280px] overflow-hidden bg-red-200`}
       >
         {pictures.map((el, idx) => {
           const selected = idx === panel;
 
           return (
             <div
-              className={`absolute h-[100%] w-[100%] md:h-[560px] md:w-[400px] max-md:max-h-[392px] max-md:max-w-[280px]`}
+              className={`absolute h-[100%] w-[100%] md:h-[560px] md:w-[400px]`}
               style={{
                 zIndex: selected ? 10 : 0,
                 transition: selected ? "transform 2s" : "none",
@@ -158,6 +170,29 @@ export default function Carousel() {
             </div>
           );
         })}
+      </div>
+      <MainFooter />
+      {/* for mobile */}
+      <div className="absolute flex justify-center items-center bottom-4 w-full h-5 md:hidden">
+        <span
+          className="transition-colors duration-2000"
+          style={{ color: currentColor }}
+        >
+          0{panel + 1}
+        </span>
+        <div className="mx-2 h-full w-[1px] bg-gray-500" />
+        <span className="text-gray-500">06</span>
+      </div>
+      {/* for web */}
+      <div className="absolute flex flex-col justify-center items-center top-[48%] left-4 max-md:hidden">
+        <span
+          className="transition-colors duration-2000"
+          style={{ color: currentColor }}
+        >
+          0{panel + 1}
+        </span>
+        <div className="h-[1px] w-10 bg-gray-500 my-3" />
+        <span className="text-gray-500">06</span>
       </div>
     </div>
   );

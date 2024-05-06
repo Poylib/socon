@@ -1,16 +1,18 @@
 "use client";
 
 import useSidebar from "@/store/useSideBar";
+import Link from "next/link";
+
+import { NAV_CATEGORY } from "@/constants/navigation";
 
 import styles from "./Nav.module.scss";
-import { NAV_CATEGORY } from "@/constants/navigation";
-import Link from "next/link";
 
 export default function SideNav() {
   const { isOpen, setOpenSide } = useSidebar();
 
   return (
     <div className={`${styles.sideNav} ${isOpen ? styles["sideNav-on"] : ""}`}>
+      <div className="absolute top-[70px] right-10">contect 문구</div>
       <nav>
         <ul>
           {NAV_CATEGORY.map((item, idx) => (

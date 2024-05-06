@@ -1,16 +1,16 @@
 import { create } from "zustand";
 
 type MainStore = {
-  currentBg: string;
+  currentColor: string;
   panel: number;
-  setCurrentBg: (newColor: string) => void;
+  setCurrentColor: (newColor: string) => void;
   setPanel: (num: number) => void;
 };
 
 const useMainAnimation = create<MainStore>((set) => ({
-  currentBg: "#222",
+  currentColor: "#222",
   panel: 0,
-  setCurrentBg: (newColor) => set({ currentBg: newColor }),
+  setCurrentColor: (newColor) => set({ currentColor: newColor }),
   setPanel: (num) => set({ panel: num }),
 }));
 
