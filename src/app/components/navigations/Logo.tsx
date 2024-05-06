@@ -14,16 +14,14 @@ export default function Logo() {
   const { isOpen } = useSidebar();
 
   const logo = useMemo(() => {
-    if (currentColor === "#EBECED") return white_logo;
+    if (isOpen) return black_logo;
+
+    if (currentColor === "white") return white_logo;
     else return black_logo;
   }, [currentColor]);
 
   return (
-    <Link
-      href={"/"}
-      className="transition-colors duration-2000"
-      style={{ color: isOpen ? "1a2637" : currentColor }}
-    >
+    <Link href={"/"} className="transition-colors duration-2000">
       <Image src={logo} className="w-10 md:w-14" alt="socon logo" />
     </Link>
   );
