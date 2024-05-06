@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../style/globals.css";
+import localFont from "next/font/local";
 
 import Nav from "./components/navigations";
 import SideNav from "./components/navigations/SideNav";
 
-const inter = Inter({ subsets: ["latin"] });
+import "../style/globals.css";
+
+const SCDream = localFont({
+  src: [
+    { path: "./fonts/SCDream1.otf", weight: "100", style: "normal" },
+    { path: "./fonts/SCDream2.otf", weight: "200", style: "normal" },
+    { path: "./fonts/SCDream3.otf", weight: "300", style: "normal" },
+    { path: "./fonts/SCDream4.otf", weight: "400", style: "normal" },
+    { path: "./fonts/SCDream5.otf", weight: "500", style: "normal" },
+    { path: "./fonts/SCDream6.otf", weight: "600", style: "normal" },
+    { path: "./fonts/SCDream7.otf", weight: "700", style: "normal" },
+    { path: "./fonts/SCDream8.otf", weight: "800", style: "normal" },
+    { path: "./fonts/SCDream8.otf", weight: "900", style: "normal" },
+  ],
+});
 
 export const metadata: Metadata = {
   title: "socon",
@@ -26,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={SCDream.className}>
       <body className="overscroll-none" suppressHydrationWarning>
         <SideNav />
         <Nav />
