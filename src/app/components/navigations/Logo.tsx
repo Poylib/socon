@@ -21,8 +21,11 @@ export default function Logo() {
   }, [currentColor]);
 
   return (
-    <Link href={"/"} className="transition-colors duration-2000">
-      <Image src={logo} className="w-10 md:w-14" alt="socon logo" />
+    <Link
+      href={"/"}
+      className="flex items-center transition-colors duration-2000"
+    >
+      <Image src={logo} className="w-14 md:w-16" alt="socon logo" />
     </Link>
   );
 }
