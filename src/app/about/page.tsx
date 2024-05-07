@@ -6,6 +6,8 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TopScroll from "../components/about/TopScroll";
 import useMainAnimation from "@/store/useMainAnimation";
+import Process from "../components/about/Process";
+import Footer from "../components/navigations/Footer";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -37,10 +39,10 @@ export default function About() {
   });
 
   return (
-    <main ref={mainRef} className="pt-[70px] h-[500dvh]">
+    <main ref={mainRef} className="pt-[70px] h-fit">
       <TopScroll />
-
-      <span>blabla</span>
+      <Process />
+      <Footer />
     </main>
   );
 }

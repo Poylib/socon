@@ -198,7 +198,7 @@ export default function Carousel() {
       </div>
       <MainFooter />
       {/* for mobile */}
-      <div className="absolute flex justify-center items-center bottom-4 w-full h-5 md:hidden">
+      <div className="absolute flex justify-center items-center bottom-10 w-full h-5 sm:hidden">
         <span
           className="transition-colors duration-2000"
           style={{ color: currentColor }}
@@ -209,7 +209,7 @@ export default function Carousel() {
         <span className="text-gray-500">06</span>
       </div>
       {/* for web */}
-      <div className="absolute flex flex-col justify-center items-center top-[48%] right-5 max-md:hidden">
+      <div className="absolute flex flex-col justify-center items-center top-[48%] right-5 max-sm:hidden">
         <span
           className="transition-colors duration-2000"
           style={{ color: currentColor }}

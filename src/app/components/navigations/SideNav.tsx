@@ -12,7 +12,6 @@ export default function SideNav() {
 
   return (
     <div className={`${styles.sideNav} ${isOpen ? styles["sideNav-on"] : ""}`}>
-      <div className="absolute top-[70px] right-10">contect 문구</div>
       <nav>
         <ul>
           {NAV_CATEGORY.map((item, idx) => (
