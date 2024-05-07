@@ -116,8 +116,11 @@ export default function TopScroll() {
                     fill
                     alt="image"
                     placeholder="blur"
-                    style={{ objectFit: "cover" }}
-                    sizes="40vw"
+                    style={{
+                      objectFit: "cover",
+                      imageRendering: "crisp-edges",
+                    }}
+                    sizes={index === 9 ? "100vw" : "40vw"}
                   />
                 </div>
               </div>

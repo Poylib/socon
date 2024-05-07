@@ -136,15 +136,15 @@ export default function Carousel() {
 
   return (
     <div
-      className={`relative flex flex-col justify-center items-center h-[100dvh] w-screen transition duration-[2s]`}
+      className={`absol flex flex-col justify-center items-center h-[100dvh] w-screen transition duration-[2s]`}
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
     >
       <div
-        className={`absolute md:h-[560px] md:w-[400px] max-md:h-[392px] max-md:w-[280px]`}
+        className={`absolute top-1/2 left-1/2 w-[80%] h-[70%] md:h-[500px] md:w-[380px] max-md:max-h-[392px] max-md:max-w-[280px] transform -translate-x-1/2 -translate-y-1/2`}
       >
         <div
-          className="absolute top-[-14%] w-[350px] left-[-12%] md:top-[-13%] md:w-[480px] md:left-[-10%] z-0"
+          className="absolute top-[-14%] w-[125%] left-[-12%] md:top-[-13%] md:w-[480px] md:left-[-10%] z-0"
           style={{ color: currentColor }}
         >
           <Image
@@ -153,7 +153,7 @@ export default function Carousel() {
           />
         </div>
         <div
-          className="absolute bottom-[-13%] left-[-19%] w-[390px] md:bottom-[-14%] md:left-[-22%] md:w-[580px] z-0"
+          className="absolute bottom-[-16%] left-[-15%] w-[130%] md:bottom-[-14%] md:left-[-22%] md:w-[580px] z-0"
           style={{ color: currentColor }}
         >
           <Image
@@ -162,7 +162,7 @@ export default function Carousel() {
           />
         </div>
         <div
-          className={`absolute  md:h-[560px] md:w-[400px] max-md:h-[392px] max-md:w-[280px] overflow-hidden`}
+          className={`absolute h-[100%] w-[100%] md:h-[500px] md:w-[380px] max-md:max-h-[392px] max-md:max-w-[280px] overflow-hidden`}
         >
           {pictures.map((el, idx) => {
             const selected = idx === panel;
