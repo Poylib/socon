@@ -125,13 +125,13 @@ export default function TopScroll() {
           );
         })}
         <span
-          className="glowTitle absolute top-[80px] transform translate-y-[40px] opacity-0 text-black text-2xl font-semibold"
+          className="glowTitle absolute top-[15%] transform translate-y-[40px] opacity-0 text-black text-xl font-semibold md:text-3xl"
           style={{ letterSpacing: 5 }}
         >
           So Concretus!
         </span>
         <span
-          className="glowContent absolute top-[130px] px-2 transform translate-y-[20px] opacity-0 text-black text-center text-xs"
+          className="glowContent absolute top-[25%] px-2 transform translate-y-[20px] opacity-0 text-black text-center text-[10px] md:text-xl"
           style={{ lineHeight: 1.6 }}
         >
           현대 건축의 상징이자 미학의 한 축을 이루는 콘크리트
