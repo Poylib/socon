@@ -24,7 +24,7 @@ export default function Process() {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center pt-12">
+    <div className="flex flex-col justify-center items-center pt-12 h-[100vh]">
       {processArr.map((el, idx) => {
         return (
           <Fragment key={idx}>
