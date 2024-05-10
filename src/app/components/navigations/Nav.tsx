@@ -9,7 +9,7 @@ import styles from "./Nav.module.scss";
 import useMainAnimation from "@/store/useMainAnimation";
 
 export default function Nav() {
-  const { currentColor } = useMainAnimation();
+  const { currentColor, setCurrentColor } = useMainAnimation();
   return (
     <>
       <header className={styles.container}>
@@ -22,6 +22,7 @@ export default function Nav() {
                   href={item.href}
                   className="transition-colors duration-2000"
                   style={{ color: currentColor }}
+                  onClick={() => setCurrentColor("black")}
                 >
                   {item.name}
                 </Link>

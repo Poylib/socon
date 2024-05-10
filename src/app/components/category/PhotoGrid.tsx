@@ -1,14 +1,14 @@
-import Image from "next/image";
+import PhotoCard from "./PhotoCard";
 
-export default function PhotoGrid({ data }) {
-  return data.map((photo, idx) => (
-    <div className="relative h-[20%] w-[100%]" key={idx}>
-      <Image
-        src={photo}
-        fill={true}
-        style={{ objectFit: "cover" }}
-        alt="photo"
-      />
-    </div>
-  ));
+interface Props {
+  data: {
+    thumbnail: string | undefined;
+    category: string;
+    content: string;
+    src: string;
+  }[];
+}
+
+export default function PhotoGrid({ data }: Props) {
+  return data.map((photo, idx) => <PhotoCard photo={photo} key={`${idx}`} />);
 }
