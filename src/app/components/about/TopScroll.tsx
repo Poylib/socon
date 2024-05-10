@@ -27,43 +27,33 @@ export default function TopScroll() {
   const pictures = [
     {
       src: Picture1,
-      scale: 4,
     },
     {
       src: Picture2,
-      scale: 5,
     },
     {
       src: Picture3,
-      scale: 5,
     },
     {
       src: Picture4,
-      scale: 5,
     },
     {
       src: Picture5,
-      scale: 5,
     },
     {
       src: Picture6,
-      scale: 5,
     },
     {
       src: Picture7,
-      scale: 5,
     },
     {
       src: Picture8,
-      scale: 5,
     },
     {
       src: Picture9,
-      scale: 5,
     },
     {
       src: Picture1z,
-      scale: 4,
     },
   ];
 
@@ -77,15 +67,39 @@ export default function TopScroll() {
       },
     });
     pictures.forEach((el, idx) => {
-      growTl.to(
-        `.picture${idx}`,
-        {
-          duration: 1,
-          scale: 4,
-          opacity: 1,
-        },
-        "<"
-      );
+      if (idx === 0 || idx === 9) {
+        growTl
+          .to(
+            `.center`,
+            {
+              duration: 1,
+
+              height: "100vh",
+              width: "100vw",
+              opacity: 1,
+            },
+            "<"
+          )
+          .to(
+            `.picture${idx}`,
+            {
+              duration: 1,
+              height: "100vh",
+              width: "100vw",
+              opacity: 1,
+            },
+            "<"
+          );
+      } else
+        growTl.to(
+          `.picture${idx}`,
+          {
+            duration: 1,
+            scale: 4,
+            opacity: 1,
+          },
+          "<"
+        );
     });
 
     growTl
@@ -110,7 +124,11 @@ export default function TopScroll() {
           return (
             <Fragment key={index}>
               <div className={`picture${index} ${styles.el}`}>
-                <div className={`${styles.imageContainer}`}>
+                <div
+                  className={`${index === 0 || index === 9 ? "center" : ""} ${
+                    styles.imageContainer
+                  }`}
+                >
                   <Image
                     src={src}
                     fill
