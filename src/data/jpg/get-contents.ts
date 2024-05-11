@@ -1,21 +1,23 @@
-import { getPaths } from "./get-paths";
+import { sync } from "glob";
 
-export async function getPosts(category: string) {
-  return getPaths(category).map((filePath) => {
-    const fileName = filePath.split("/").pop();
-    const thumbnail = fileName;
+import { JPG_PATH } from "../config";
 
-    // 카테고리 추출
-    const mathPath = filePath.match(/\[(.*?)\]/);
-    const category = mathPath ? mathPath[1] : "";
-
-    // 컨텐츠 추출
-    const contentMatch = filePath.match(/\[.*?\]_(.*)\//);
-    const content = contentMatch ? contentMatch[1] : "";
-    const src = filePath.split("public")[1];
-
-    const obj = { thumbnail, category, content, src };
-
-    return obj;
+export async function getPosts(post: string) {
+  const path = sync(`${JPG_PATH}/${post}/postList/*.jpg`);
+  return path.reverse().map((str) => {
+    const src = str.split("public")[1];
+    const trimmedPath = str.match(/\d+_.*?(?=\.jpg$)/)?.[0];
+    if (!trimmedPath) return;
+    const [_, category, content] = trimmedPath.split("_");
+    console.log({
+      src,
+      content,
+      category,
+    });
+    return {
+      src,
+      content,
+      category,
+    };
   });
 }

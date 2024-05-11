@@ -1,14 +1,19 @@
 import PhotoCard from "./PhotoCard";
 
 interface Props {
-  data: {
-    thumbnail: string | undefined;
-    category: string;
-    content: string;
-    src: string;
-  }[];
+  data: (
+    | {
+        category: string;
+        content: string;
+        src: string;
+      }
+    | undefined
+  )[];
 }
 
 export default function PhotoGrid({ data }: Props) {
-  return data.map((photo, idx) => <PhotoCard photo={photo} key={`${idx}`} />);
+  return data.map((photo, idx) => {
+    if (!photo) return;
+    return <PhotoCard photo={photo} key={`${idx}`} />;
+  });
 }

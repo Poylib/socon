@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   photo: {
-    thumbnail: string | undefined;
     category: string;
     content: string;
     src: string;
