@@ -17,7 +17,7 @@ export default function PhotoCard({ photo, index }: Props) {
     const slug = path.split(" ").join("_");
     router.push(`jpg/${slug}?category=${category}`);
   };
-  console.log("bb", photo.src);
+
   return (
     <div
       className="relative h-[210px] w-[100%] sm:h-[280px] md:h=[360px]"
