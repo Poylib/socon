@@ -7,13 +7,10 @@ export async function getPosts(post: string) {
   return path.reverse().map((str) => {
     const src = str.split("public")[1];
     const trimmedPath = str.match(/\d+_.*?(?=\.jpg$)/)?.[0];
+
     if (!trimmedPath) return;
     const [_, category, content] = trimmedPath.split("_");
-    console.log({
-      src,
-      content,
-      category,
-    });
+
     return {
       src,
       content,
