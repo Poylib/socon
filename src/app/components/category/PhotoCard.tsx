@@ -24,7 +24,7 @@ export default function PhotoCard({ photo, index }: Props) {
       onClick={() => goDetail(photo.content, photo.category)}
     >
       <Image
-        src={photo.src}
+        src="https://d66us06o4pe3t.cloudfront.net/jpg/[Commercial]_%E1%84%80%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%AE%E1%86%A8%E1%84%80%E1%85%A1%E1%84%92%E1%85%A7%E1%86%B8%E1%84%92%E1%85%AC%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B5/1.jpg"
         fill={true}
         style={{ objectFit: "cover" }}
         alt="photo"
