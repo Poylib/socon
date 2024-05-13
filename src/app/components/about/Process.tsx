@@ -15,21 +15,24 @@ export default function Process() {
       title: "백업",
       content: "물리적인 공간과 클라우드 공간에 데이터를 보관합니다",
     },
-    { title: "리터칭", content: "색감보정 및 세부 수정을 진행합니다" },
+    { title: "Retouch & C.G", content: "색감보정 및 세부 수정을 진행합니다" },
     {
       title: "컨펌",
       content: "모든 과정에서 클라이언트의 동의를 받아 진행합니다",
     },
-    { title: "전송", content: "" },
+    { title: "납품", content: "" },
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center pt-12 h-[100vh]">
+    <div className="flex flex-col items-center justify-between pt-[70px] h-[100vh]">
+      <h2 className="mb-8 text-2xl" style={{ letterSpacing: 2 }}>
+        PROCESS
+      </h2>
       {processArr.map((el, idx) => {
         return (
           <Fragment key={idx}>
-            <h3 className="mb-4 text-2xl">{el.title}</h3>
-            <span className="mb-4 text-sm">{el.content}</span>
+            <h3 className="mb-2 text-base  md:text-xl">{el.title}</h3>
+            <span className="mb-8 text-xs md:text-xs">{el.content}</span>
           </Fragment>
         );
       })}

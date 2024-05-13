@@ -1,6 +1,6 @@
-import { getJpgContent } from "@/app/aws/jpg/getPost";
-import { getPosts } from "@/data/jpg/get-contents";
 import Image from "next/image";
+
+import { getJpgContent } from "@/app/aws/jpg/getPost";
 
 export default async function Category({ params, searchParams }) {
   const { category } = searchParams;

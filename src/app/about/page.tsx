@@ -8,6 +8,7 @@ import TopScroll from "../components/about/TopScroll";
 import useMainAnimation from "@/store/useMainAnimation";
 import Process from "../components/about/Process";
 import Footer from "../components/navigations/Footer";
+import Introduce from "../components/about/Introduce";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -41,6 +42,7 @@ export default function About() {
   return (
     <main ref={mainRef} className="pt-[70px] h-fit">
       <TopScroll />
+      <Introduce />
       <Process />
       <Footer />
     </main>

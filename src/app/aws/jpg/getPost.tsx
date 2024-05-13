@@ -8,5 +8,5 @@ export const getJpgContent = async (path) => {
   });
   const { Contents } = await s3Client.send(command);
 
-  return { Contents: Contents };
+  return { Contents };
 };
