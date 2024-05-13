@@ -1,12 +1,9 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export default function PhotoCard({ photo, index }) {
-  const gg = "jpg/list/5_Commercial_78b1n.jpg";
-  const result = gg.match(/\/([^\/]+)\.jpg$/);
-  console.log("🪄  PhotoCard  photo", result?.[1]);
   const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
 
@@ -18,9 +15,15 @@ export default function PhotoCard({ photo, index }) {
     router.push(`jpg/${category}?category=${slug}`);
   };
 
+  const keyArr = useMemo(() => {
+    const result = photo.Key.match(/\/([^\/]+)\.jpg$/);
+    const key = result?.[1].split("_");
+    return key;
+  }, [photo]);
+
   return (
     <div
-      className="relative h-[210px] w-[100%] sm:h-[280px] md:h=[360px]"
+      className="relative h-[210px] w-[100%] sm:h-[280px] md:h=[360px] overflow-hidden"
       onClick={() => goDetail(photo.Key)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -28,14 +31,19 @@ export default function PhotoCard({ photo, index }) {
       <Image
         src={`https://socon-image.s3.ap-northeast-2.amazonaws.com/${photo.Key}`}
         fill={true}
-        style={{ objectFit: "cover" }}
+        className="transition-scale duration-500"
+        style={{ objectFit: "cover", scale: isHovered ? 1.2 : 1 }}
         alt="photo"
         sizes={"50vw"}
         priority={index}
       />
-      {isHovered && (
-        <div className="absolute w-full h-full bg-white opacity-70 z-10"></div>
-      )}
+      <div
+        className="absolute flex flex-col items-center justify-center w-full h-full bg-white z-10 transition-opacity duration-500"
+        style={{ opacity: isHovered ? 0.8 : 0 }}
+      >
+        <span className="mb-8">{keyArr[1]}</span>
+        <span className="text-xl">{keyArr[3]}</span>
+      </div>
     </div>
   );
 }
