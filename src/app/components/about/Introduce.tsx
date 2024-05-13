@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import img0 from "@@/about/한지훈.jpeg";
-import img1 from "@@/about/김동일.jpeg";
+import img0 from "@@/about/han.jpeg";
+import img1 from "@@/about/kim.jpeg";
 
 export default function Introduce() {
   const person = [
