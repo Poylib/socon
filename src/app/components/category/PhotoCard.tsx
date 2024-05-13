@@ -23,7 +23,7 @@ export default function PhotoCard({ photo, index }) {
 
   return (
     <div
-      className="relative h-[390px] w-[100%] sm:h-[280px] md:h=[360px] overflow-hidden"
+      className="relative h-[210px] w-[100%] sm:h-[280px] md:h=[360px] overflow-hidden hover:cursor-pointer"
       onClick={() => goDetail(photo.Key)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
