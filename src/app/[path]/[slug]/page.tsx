@@ -11,23 +11,20 @@ export default async function Category({ params, searchParams }) {
   const { Contents } = await getJpgContent(req);
 
   return (
-    <section className="grid grid-cols-1 w-[100%] md:grid-cols-2 lg:grid-cols-3 gap-4 py-[70px] px-6">
+    <section className=" w-[100%] py-[70px] px-6 max-w-screen-md">
       {Contents?.map((el, idx) => {
         if (idx === 0) return;
         return (
-          <div
+          <Image
+            src={`https://socon-image.s3.ap-northeast-2.amazonaws.com/${el.Key}`}
+            width="0"
+            height="0"
+            sizes="100vw"
+            className="w-full h-auto mb-4"
+            alt="photo"
             key={`${idx}`}
-            className="relative h-[280px] w-[100%] sm:h-[280px] md:h=[360px]"
-          >
-            <Image
-              src={`https://socon-image.s3.ap-northeast-2.amazonaws.com/${el.Key}`}
-              fill={true}
-              style={{ objectFit: "cover" }}
-              alt="photo"
-              sizes={"50vw"}
-              priority={true}
-            />
-          </div>
+            priority={true}
+          />
         );
       })}
     </section>
