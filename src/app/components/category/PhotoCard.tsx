@@ -2,34 +2,29 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-interface Props {
-  photo: {
-    thumbnail: string | undefined;
-    category: string;
-    content: string;
-    src: string;
-  };
-}
-
-export default function PhotoCard({ photo }: Props) {
+export default function PhotoCard({ photo, index }) {
   const router = useRouter();
 
-  const goDetail = (path: string) => {
-    const slug = path.split(" ").join("_");
-    router.push(`jpg/${slug}`);
+  const goDetail = (key: string) => {
+    const hash = key.match(/_(.*?)\.jpg/);
+    if (!hash) return;
+    const [slug, category] = hash[1].split("_");
+
+    router.push(`jpg/${category}?category=${slug}`);
   };
 
   return (
     <div
       className="relative h-[210px] w-[100%] sm:h-[280px] md:h=[360px]"
-      onClick={() => goDetail(photo.content)}
+      onClick={() => goDetail(photo.Key)}
     >
       <Image
-        src={photo.src}
+        src={`https://socon-image.s3.ap-northeast-2.amazonaws.com/${photo.Key}`}
         fill={true}
         style={{ objectFit: "cover" }}
         alt="photo"
         sizes={"50vw"}
+        priority={index}
       />
     </div>
   );
