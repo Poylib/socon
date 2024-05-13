@@ -24,15 +24,15 @@ export default function Process() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-between pt-[70px] h-[100vh]">
-      <h2 className="mb-8 text-2xl" style={{ letterSpacing: 2 }}>
+    <div className="flex flex-col items-center pt-[70px] h-[100vh]">
+      <h2 className="mb-8 text-2xl md:text-4xl" style={{ letterSpacing: 2 }}>
         PROCESS
       </h2>
       {processArr.map((el, idx) => {
         return (
           <Fragment key={idx}>
-            <h3 className="mb-2 text-base  md:text-xl">{el.title}</h3>
-            <span className="mb-8 text-xs md:text-xs">{el.content}</span>
+            <h3 className="mb-2 text-base md:text-xl">{el.title}</h3>
+            <span className="mb-8 text-xs md:text-base">{el.content}</span>
           </Fragment>
         );
       })}

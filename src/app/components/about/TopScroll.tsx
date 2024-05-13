@@ -153,7 +153,7 @@ export default function TopScroll() {
         </span>
         <span
           className="glowContent absolute top-[25%] px-2 transform translate-y-[20px] opacity-0 text-black text-center text-[10px] md:text-xl"
-          style={{ lineHeight: 1.6 }}
+          style={{ lineHeight: 1.6, letterSpacing: 0.8 }}
         >
           현대 건축의 상징이자 미학의 한 축을 이루는 콘크리트
           <br />
