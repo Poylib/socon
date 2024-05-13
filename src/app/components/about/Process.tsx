@@ -32,7 +32,9 @@ export default function Process() {
         return (
           <Fragment key={idx}>
             <h3 className="mb-2 text-base md:text-xl">{el.title}</h3>
-            <span className="mb-8 text-xs md:text-base">{el.content}</span>
+            <span className="mb-8 font-light text-xs md:text-base">
+              {el.content}
+            </span>
           </Fragment>
         );
       })}
