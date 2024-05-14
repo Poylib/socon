@@ -20,6 +20,8 @@ import studio_white from "@@/main/STUDIO_white.png";
 import studio_black from "@@/main/STUDIO_black.png";
 import concretus_white from "@@/main/Concretus_white.png";
 import concretus_black from "@@/main/Concretus_black.png";
+import side_white from "@@/main/side_white.png";
+import side_black from "@@/main/side_black.png";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -219,11 +221,11 @@ export default function Carousel() {
         <div className="h-[1px] w-10 bg-gray-500 my-3" />
         <span className="text-gray-500">06</span>
       </div>
-      <span
-        className="absolute top-[50%] left-[2%] w-0 h-0 transform -rotate-90 max-md:hidden transition-colors duration-2000"
-        style={{ color: currentColor }}
-      >
-        studio_socon
+      <span className="absolute top-[43%] left-5  w-[120px] h-[120px] transform -rotate-90 max-md:hidden">
+        <Image
+          src={currentColor === "black" ? side_black : side_white}
+          alt="side logo text"
+        />
       </span>
     </div>
   );

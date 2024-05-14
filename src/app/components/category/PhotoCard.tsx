@@ -20,7 +20,6 @@ export default function PhotoCard({ photo, index }) {
     const key = result?.[1].split("_");
     return key;
   }, [photo]);
-  console.log("bbv", keyArr[3]);
 
   return (
     <div
