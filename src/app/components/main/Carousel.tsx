@@ -209,7 +209,7 @@ export default function Carousel() {
         <span className="text-gray-500">06</span>
       </div>
       {/* for web */}
-      <div className="absolute flex flex-col justify-center items-center top-[48%] right-5 max-sm:hidden">
+      <div className="absolute flex flex-col justify-center items-center top-[43%] right-5 max-sm:hidden">
         <span
           className="transition-colors duration-2000"
           style={{ color: currentColor }}
@@ -220,7 +220,7 @@ export default function Carousel() {
         <span className="text-gray-500">06</span>
       </div>
       <span
-        className="absolute top-[50%] left-[-2%] transform -rotate-90 max-md:hidden transition-colors duration-2000"
+        className="absolute top-[50%] left-[2%] w-0 h-0 transform -rotate-90 max-md:hidden transition-colors duration-2000"
         style={{ color: currentColor }}
       >
         studio_socon
