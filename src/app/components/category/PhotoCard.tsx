@@ -20,6 +20,7 @@ export default function PhotoCard({ photo, index }) {
     const key = result?.[1].split("_");
     return key;
   }, [photo]);
+  console.log("bbv", keyArr[3]);
 
   return (
     <div
@@ -42,7 +43,7 @@ export default function PhotoCard({ photo, index }) {
         style={{ opacity: isHovered ? 0.8 : 0 }}
       >
         <span className="mb-8">{keyArr[1]}</span>
-        <span className="text-xl">{keyArr[3]}</span>
+        <span className="text-xl">{keyArr[3].normalize("NFC")}</span>
       </div>
     </div>
   );
