@@ -22,7 +22,7 @@ const SCDream = localFont({
 
 export const metadata: Metadata = {
   title: "socon",
-  description: "socon 이 어쩌구 저쩌구",
+  description: "Studio SOCON Professional Commercial Photo Studio",
   openGraph: {
     images: [
       {

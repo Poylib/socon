@@ -136,7 +136,7 @@ export default function Carousel() {
 
   return (
     <div
-      className={`absol flex flex-col justify-center items-center h-[100dvh] w-screen transition duration-[2s]`}
+      className={`absolute flex flex-col justify-center items-center h-[100dvh] w-screen transition duration-[2s]`}
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
     >
@@ -153,12 +153,12 @@ export default function Carousel() {
           />
         </div>
         <div
-          className="absolute bottom-[-16%] left-[-15%] w-[130%] md:bottom-[-14%] md:left-[-22%] md:w-[580px] z-0"
+          className="absolute bottom-[-16%] left-[-15%] w-[130%] md:bottom-[-18%] md:left-[-22%] md:w-[580px] z-0"
           style={{ color: currentColor }}
         >
           <Image
             src={currentColor === "black" ? concretus_black : concretus_white}
-            alt="studio text"
+            alt="so concretus text"
           />
         </div>
         <div

@@ -3,7 +3,6 @@ import { getJpgContentList } from "../aws/jpg/getPostList";
 
 export default async function Category() {
   const { Contents } = await getJpgContentList();
-  console.log("🚀 ~ Category ~ Contents:", Contents);
   function compare(a, b) {
     const numA = Number(a.Key.match(/\/list\/(\d+)_/)[1]);
     const numB = Number(b.Key.match(/\/list\/(\d+)_/)[1]);

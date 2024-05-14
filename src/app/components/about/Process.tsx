@@ -24,8 +24,8 @@ export default function Process() {
   ];
 
   return (
-    <div className="flex flex-col items-center pt-[70px] h-[100vh]">
-      <h2 className="mb-8 text-2xl md:text-4xl" style={{ letterSpacing: 2 }}>
+    <div className="flex flex-col items-center justify-center h-[100vh] md:h-[70vh] md:justify-start">
+      <h2 className="mb-12 text-2xl md:text-4xl" style={{ letterSpacing: 2 }}>
         PROCESS
       </h2>
       {processArr.map((el, idx) => {

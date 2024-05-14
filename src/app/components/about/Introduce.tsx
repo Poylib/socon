@@ -23,7 +23,7 @@ export default function Introduce() {
     },
   ];
   return (
-    <div className="flex flex-col items-center justify-between pt-[70px]">
+    <div className="flex flex-col items-center justify-between pt-[30vh] mb-[30vh]">
       <h2 className="mb-8 text-2xl md:text-4xl" style={{ letterSpacing: 2 }}>
         MEMBER
       </h2>
