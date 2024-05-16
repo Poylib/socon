@@ -81,7 +81,7 @@ export default function page() {
       </span>
       <div className="md:flex md:mt-10">
         <div className="my-[15%] md:my-0 md:w-[50%] md:p-12">
-          <Image src={Price} alt="가격 탭 메인 사진" />
+          <Image src={Price} alt="가격 탭 메인 사진" placeholder="blur" />
         </div>
         <div className="flex flex-col w-full px-10 md:w-[50%] md:justify-center">
           <h3 className="mb-5">출장비</h3>
