@@ -4,14 +4,14 @@ import { getJpgContent } from "@/app/aws/jpg/getPost";
 
 export default async function Category({ params, searchParams }) {
   const { category } = searchParams;
-  const { path, slug } = params;
+  const { slug } = params;
 
-  const req = `${path}/${category}/${slug}`;
+  const req = `jpg/${category}/${slug}`;
 
   const { Contents } = await getJpgContent(req);
 
   return (
-    <section className=" w-[100%] py-[70px] px-6 max-w-screen-md">
+    <section className=" w-[100%] py-[70px] px-6 max-w-screen-md min-h-[100vh]">
       {Contents?.map((el, idx) => {
         if (idx === 0) return;
         return (
