@@ -1,7 +1,7 @@
 import { s3Client } from "@/utils/aws";
 import { ListObjectsV2Command } from "@aws-sdk/client-s3";
 
-export const getJpgContent = async (path) => {
+export const getAwsContent = async (path) => {
   const command = new ListObjectsV2Command({
     Bucket: "socon-image",
     Prefix: path,

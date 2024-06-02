@@ -95,7 +95,7 @@ export default function page() {
             })}
           </ul>
           <span className="font-thin text-xs">
-            (경상남도와 부산광역시는 일정 조율시 출장비가 없을 수 있습니다)
+            (부산광역시는 일정 조율시 출장비가 없을 수 있습니다)
           </span>
         </div>
       </div>

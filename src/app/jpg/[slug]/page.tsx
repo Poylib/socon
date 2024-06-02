@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { getJpgContent } from "@/app/aws/jpg/getPost";
+import { getAwsContent } from "@/app/aws/jpg/getPost";
 
 export default async function Category({ params, searchParams }) {
   const { category } = searchParams;
@@ -8,7 +8,7 @@ export default async function Category({ params, searchParams }) {
 
   const req = `jpg/${category}/${slug}`;
 
-  const { Contents } = await getJpgContent(req);
+  const { Contents } = await getAwsContent(req);
 
   return (
     <section className=" w-[100%] py-[70px] px-6 max-w-screen-md min-h-[100vh]">
