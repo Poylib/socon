@@ -6,7 +6,7 @@ export const KAKAO_LINK = "https://pf.kakao.com/_NtVxcG/chat";
 export const NAV_CATEGORY = [
   { name: "ABOUT", href: "/about" },
   { name: "JPG", href: "/jpg" },
-  // { name: "MP4", href: "/mp4" },
+  { name: "MP4", href: "/mp4" },
   {
     name: "INSTAGRAM",
     href: INSTA_LINK,
