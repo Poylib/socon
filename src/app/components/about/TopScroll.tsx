@@ -139,6 +139,7 @@ export default function TopScroll() {
                       imageRendering: "crisp-edges",
                     }}
                     sizes={index === 9 ? "100vw" : "40vw"}
+                    loading="lazy"
                   />
                 </div>
               </div>

@@ -1,4 +1,3 @@
-import { title } from "process";
 import { Fragment } from "react";
 
 export default function Process() {
@@ -24,7 +23,7 @@ export default function Process() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center h-[100vh] md:h-[70vh] md:justify-start">
+    <div className="flex flex-col items-center my-[80px] md:justify-start">
       <h2 className="mb-12 text-2xl md:text-4xl" style={{ letterSpacing: 2 }}>
         PROCESS
       </h2>

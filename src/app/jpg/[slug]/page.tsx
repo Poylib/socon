@@ -23,7 +23,7 @@ export default async function Category({ params, searchParams }) {
             className="w-full h-auto mb-4"
             alt="photo"
             key={`${idx}`}
-            priority={true}
+            loading="lazy"
           />
         );
       })}
