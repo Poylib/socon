@@ -16,6 +16,13 @@ export default async function Category() {
     return 0;
   }
   Contents?.sort(compare);
+
+  const data = await fetch(`${process.env.BASE_URL}/aws/api`, {
+    cache: "no-cache",
+  });
+  const posts = await data.json();
+  console.log("🚀 ~ Cat2egory ~ po2sts:", posts.data);
+
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-[70px] px-6 w-[100%] max-w-[1024px]">
       <PhotoGrid data={Contents?.sort(compare)} />
