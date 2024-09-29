@@ -6,7 +6,7 @@ export default async function Category({ params, searchParams }) {
   const data = await fetch(
     `${process.env.BASE_URL}/aws/slug/api?category=${category}&slug=${slug}`,
     {
-      cache: "no-cache",
+      method: "GET",
     }
   );
 
