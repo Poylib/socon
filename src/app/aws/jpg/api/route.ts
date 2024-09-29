@@ -9,7 +9,7 @@ export async function GET() {
   });
   const { Contents } = await s3Client.send(command);
 
-  const data = { Contents: Contents?.filter((el) => el.Key?.includes(".jpg")) };
+  const data = Contents?.filter((el) => el.Key?.includes(".jpg"));
 
   return NextResponse.json({ data });
 }

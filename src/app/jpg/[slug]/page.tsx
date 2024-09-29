@@ -1,14 +1,16 @@
 import Image from "next/image";
 
-import { getAwsContent } from "@/app/aws/jpg/getPost";
-
 export default async function Category({ params, searchParams }) {
   const { category } = searchParams;
   const { slug } = params;
+  const data = await fetch(
+    `${process.env.BASE_URL}/aws/slug/api?category=${category}&slug=${slug}`,
+    {
+      cache: "no-cache",
+    }
+  );
 
-  const req = `jpg/${category}/${slug}`;
-
-  const { Contents } = await getAwsContent(req);
+  const { Contents } = await data.json();
 
   return (
     <section className=" w-[100%] py-[70px] px-6 max-w-screen-md min-h-[100vh]">
