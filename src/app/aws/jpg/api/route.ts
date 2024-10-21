@@ -1,15 +1,33 @@
-import { s3Client } from "@/utils/aws";
-import { ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  const command = new ListObjectsV2Command({
-    Bucket: "socon-image",
-    Prefix: "jpg/list",
-  });
-  const { Contents } = await s3Client.send(command);
+export type DataType = {
+  index: number;
+  place: string;
+  category: string;
+  url: string;
+};
 
-  const data = Contents?.filter((el) => el.Key?.includes(".jpg"));
+export interface JpgResponseType {
+  data: DataType[];
+}
+
+export async function GET() {
+  const urlSet = [
+    {
+      url: "JPG/Individual/나오시마+답사/나오시마+답사_0.jpg",
+      place: "나오시마 답사",
+      category: "Individual",
+    },
+  ];
+
+  const data: DataType[] = urlSet.map((set, index) => {
+    return {
+      index,
+      place: set.place,
+      category: set.category,
+      url: `https://${process.env.CLOUDFRONT_URL}/${set.url}`,
+    };
+  });
 
   return NextResponse.json({ data });
 }

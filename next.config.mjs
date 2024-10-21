@@ -11,6 +11,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: `${process.env.CLOUDFRONT_URL}`,
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
