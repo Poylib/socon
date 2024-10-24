@@ -13,10 +13,7 @@ export default function PhotoCard({ photo }: PhotoCardProps) {
   const router = useRouter();
 
   const goDetail = () => {
-    // const hash = key.match(/_(.*?)\.jpg/);
-    // if (!hash) return;
-    // const [slug, category] = hash[1].split("_");
-    // router.push(`jpg/${category}?category=${slug}`);
+    router.push(`jpg/${photo.place}?category=${photo.category}`);
   };
 
   return (

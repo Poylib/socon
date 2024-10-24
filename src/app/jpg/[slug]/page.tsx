@@ -4,17 +4,18 @@ export default async function Category({ params, searchParams }) {
   const { category } = searchParams;
   const { slug } = params;
   const data = await fetch(
-    `${process.env.BASE_URL}/aws/slug/api?category=${category}&slug=${slug}`,
+    `https://${process.env.CLOUDFRONT_URL}/?prefix=JPG`,
     {
       method: "GET",
+      cache: "no-cache",
     }
   );
 
-  const { Contents } = await data.json();
+  console.log("hi", data);
 
   return (
     <section className=" w-[100%] py-[70px] px-6 max-w-screen-md min-h-[100vh]">
-      {Contents?.map((el, idx) => {
+      {/* {Contents?.map((el, idx) => {
         if (idx === 0) return;
         return (
           <Image
@@ -28,7 +29,7 @@ export default async function Category({ params, searchParams }) {
             loading="lazy"
           />
         );
-      })}
+      })} */}
     </section>
   );
 }
