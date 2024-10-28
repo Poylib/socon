@@ -9,10 +9,12 @@ export async function GET(request: NextRequest) {
 
   const command = new ListObjectsV2Command({
     Bucket: "socon-live",
-    Prefix: `jpg/${category}/${slug}`,
+    Prefix: `JPG/${category}/${slug}`,
   });
   const { Contents } = await s3Client.send(command);
-  console.log("🪄  GET  Contents", Contents);
+  if (Contents && Contents.length > 0) {
+    Contents.shift();
+  }
 
   return NextResponse.json({ Contents });
 }
