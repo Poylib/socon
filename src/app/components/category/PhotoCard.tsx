@@ -30,6 +30,9 @@ export default function PhotoCard({ photo }: PhotoCardProps) {
         className="transition-scale duration-500"
         style={{ objectFit: "cover", scale: isHovered ? 1.2 : 1 }}
         alt="photo"
+        loading="lazy"
+        placeholder="blur"
+        blurDataURL={photo.url}
         sizes={"50vw"}
       />
       <div
