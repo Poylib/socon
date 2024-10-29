@@ -9,13 +9,13 @@ async function getCategories(): Promise<JpgResponseType> {
 }
 
 export default async function Category() {
-  const { data } = await getCategories();
-
+  // const { data } = await getCategories();
+  const data = "why";
   return (
     <>
-      {/* <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-[70px] px-6 w-[100%] max-w-[1024px]">
-        <PhotoGrid data={data} />
-      </section> */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-[70px] px-6 w-[100%] max-w-[1024px]">
+        {/* <PhotoGrid data={data} /> */}
+      </section>
       <span>{JSON.stringify(data)}</span>
     </>
   );
