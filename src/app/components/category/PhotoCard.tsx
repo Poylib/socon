@@ -13,7 +13,8 @@ export default function PhotoCard({ photo }: PhotoCardProps) {
   const router = useRouter();
 
   const goDetail = () => {
-    router.push(`jpg/${photo.place}?category=${photo.category}`);
+    const formattedPlace = photo.place.replace(/\s+/g, "_");
+    router.push(`jpg/${formattedPlace}?category=${photo.category}`);
   };
 
   return (

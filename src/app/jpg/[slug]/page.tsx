@@ -1,4 +1,3 @@
-import { getJpgContentList } from "@/app/aws/jpg/getPostList";
 import Image from "next/image";
 
 async function getContentList({ category, slug }) {
@@ -17,19 +16,10 @@ export default async function Category({ params, searchParams }) {
 
   const { Contents } = await getContentList({ category, slug });
 
-  const str = `https://${process.env.CLOUDFRONT_URL}/${Contents[0].Key}`;
-
-  const formattedStr = str.replace(/ /g, "+");
-  console.log("🪄  Category  formattedStr", formattedStr);
-
   return (
     <section className=" w-[100%] py-[70px] px-6 max-w-screen-md min-h-[100vh]">
       {Contents?.map((el, idx) => {
-        if (idx === 0) return;
-        const KEY = `https://${process.env.CLOUDFRONT_URL}/${encodeURIComponent(
-          el.Key
-        )}`;
-
+        const KEY = `https://${process.env.CLOUDFRONT_URL}/${el.Key}`;
         return (
           <Image
             src={KEY}
