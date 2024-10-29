@@ -6,7 +6,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const tab = NAV_CATEGORY.filter((el) => el.name !== "INSTAGRAM").map((el) => {
     return { url: `${baseUrl}${el.href}`, lastModified: new Date() };
   });
-  console.log("🚀 ~ tab ~ tab:", tab);
   return [
     {
       url: baseUrl,
