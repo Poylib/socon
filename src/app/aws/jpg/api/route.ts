@@ -18,6 +18,11 @@ export async function GET() {
       place: "나오시마 답사",
       category: "Individual",
     },
+    {
+      url: "JPG/Individual/마곡나루_답사/마곡나루_답사_0.jpg",
+      place: "마곡나루 답사",
+      category: "Individual",
+    },
   ];
 
   const data: DataType[] = urlSet.map((set, index) => {
