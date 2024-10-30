@@ -6,7 +6,6 @@ export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const slug = params.get("slug");
   const category = params.get("category");
-
   const command = new ListObjectsV2Command({
     Bucket: "socon-live",
     Prefix: `JPG/${category}/${slug}`,

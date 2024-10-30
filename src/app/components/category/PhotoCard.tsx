@@ -2,7 +2,7 @@
 import { DataType } from "@/app/aws/jpg/api/route";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 interface PhotoCardProps {
   photo: DataType;

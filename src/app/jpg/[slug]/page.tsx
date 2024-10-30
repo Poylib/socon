@@ -2,10 +2,7 @@ import Image from "next/image";
 
 async function getContentList({ category, slug }) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/aws/slug/api?category=${category}&slug=${slug}`,
-    {
-      cache: "no-cache",
-    }
+    `${process.env.SSR_BASE_URL}/aws/slug/api?category=${category}&slug=${slug}`
   );
   return response.json();
 }
