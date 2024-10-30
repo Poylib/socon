@@ -2,6 +2,10 @@ import { JpgResponseType } from "../aws/jpg/api/route";
 import PhotoGrid from "../components/category/PhotoGrid";
 
 async function getCategories(): Promise<JpgResponseType> {
+  console.log(
+    "🪄  getCategories",
+    `${process.env.NEXT_PUBLIC_URL}/aws/jpg/api`
+  );
   const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/aws/jpg/api`);
   return response.json();
 }
