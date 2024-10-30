@@ -2,7 +2,7 @@ import Image from "next/image";
 
 async function getContentList({ category, slug }) {
   const response = await fetch(
-    `https://${process.env.VERCEL_URL}/aws/slug/api?category=${category}&slug=${slug}`,
+    `${process.env.NEXT_PUBLIC_URL}/aws/slug/api?category=${category}&slug=${slug}`,
     {
       cache: "no-cache",
     }

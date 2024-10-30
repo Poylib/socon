@@ -28,7 +28,6 @@ export async function GET() {
       url: `https://${process.env.CLOUDFRONT_URL}/${set.url}`,
     };
   });
-  console.log("dqwwdqdqw", `http://${process.env.VERCEL_URL}/aws/jpg/api`);
 
   return NextResponse.json({ data });
 }
