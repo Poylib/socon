@@ -1,6 +1,12 @@
 import Image from "next/image";
 
-async function getContentList({ category, slug }) {
+async function getContentList({
+  category,
+  slug,
+}: {
+  category: string;
+  slug: string;
+}) {
   const response = await fetch(
     `${process.env.SSR_BASE_URL}/aws/slug/api?category=${category}&slug=${slug}`
   );

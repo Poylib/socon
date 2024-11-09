@@ -11,7 +11,6 @@ async function getCategories(): Promise<JpgResponseType> {
 
 export default async function Category() {
   const { data } = await getCategories();
-  console.log("🚀 ~ Category ~ data:", data);
 
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-[70px] px-6 w-[100%] max-w-[1024px]">

@@ -1,17 +1,12 @@
 import Image from "next/image";
-import { getAwsContent } from "../aws/jpg/getPost";
 import SNSConnect from "../components/contact/SNSConnect";
 
 export default async function Contact() {
-  const { Contents } = await getAwsContent("contact");
-
   const arr = [
     { title: "E-mail", content: "soocn_us@naver.com" },
     { title: "Mobile", content: "+82 10-8199-6398" },
     { title: "SNS", content: "" },
   ];
-
-  if (!Contents) return;
 
   return (
     <div className="flex flex-col items-center py-[70px] max-w-xl">
@@ -48,7 +43,7 @@ export default async function Contact() {
         </div>
         <div className="w-[50%]">
           <Image
-            src={`https://socon-image.s3.ap-northeast-2.amazonaws.com/${Contents[1].Key}`}
+            src={`https://${process.env.CLOUDFRONT_URL}/Contact/contact.jpeg`}
             width="200"
             height="200"
             sizes="100%"

@@ -1,14 +1,14 @@
-import { title } from "process";
-import { getAwsContent } from "../aws/jpg/getPost";
 import { Fragment } from "react";
+import { MP4Res } from "../aws/mp4/api/route";
+
+async function getContentList(): Promise<{ data: MP4Res[] }> {
+  const response = await fetch(`${process.env.SSR_BASE_URL}/aws/mp4/api`);
+  return response.json();
+}
 
 export default async function MP4() {
-  const req = `mp4/`;
+  const { data } = await getContentList();
 
-  const { Contents } = await getAwsContent(req);
-
-  const mp4Arr = Contents?.filter((el) => el?.Key.includes(".mp4"));
-  const thumbnail = Contents?.filter((el) => el?.Key.includes(".jpeg"));
   const explainArr = [
     {
       title: "현대자동차 울산 2공장 안전표준작업 홍보영상 ",
@@ -27,19 +27,16 @@ export default async function MP4() {
 
   return (
     <div className="flex flex-col items-center py-[70px] max-w-[1024px]">
-      {mp4Arr?.map((el, idx) => {
+      {data?.map((el, idx) => {
         return (
           <Fragment key={idx}>
             <video
               controls
               className="mb-2"
               style={{ width: idx === 1 ? "50%" : "100%" }}
-              poster={`https://socon-image.s3.ap-northeast-2.amazonaws.com/${thumbnail[idx].Key}`}
+              poster={el.thumbnail}
             >
-              <source
-                src={`https://socon-image.s3.ap-northeast-2.amazonaws.com/${el.Key}`}
-                type="video/mp4"
-              />
+              <source src={el.url} type="video/mp4" />
             </video>
             <div className="mb-7 px-4">
               <p className="text-lg mb-1">{explainArr[idx].title}</p>
