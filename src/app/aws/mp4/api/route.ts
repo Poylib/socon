@@ -12,14 +12,14 @@ export async function GET() {
       url: "MP4/0.mp4",
       thumbnail: "MP4/0.jpeg",
     },
-    // {
-    //   url: "MP4/1.mp4",
-    //   thumbnail: "MP4/1.jpeg",
-    // },
-    // {
-    //   url: "MP4/2.mp4",
-    //   thumbnail: "MP4/2.jpeg",
-    // },
+    {
+      url: "MP4/1.mp4",
+      thumbnail: "MP4/1.jpeg",
+    },
+    {
+      url: "MP4/2.mp4",
+      thumbnail: "MP4/2.jpeg",
+    },
   ];
 
   const data: MP4Res[] = urlSet.map((set, index) => {
