@@ -2,9 +2,7 @@ import { Fragment } from "react";
 import { MP4Res } from "../aws/mp4/api/route";
 
 async function getContentList(): Promise<{ data: MP4Res[] }> {
-  const response = await fetch(`${process.env.SSR_BASE_URL}/aws/mp4/api`, {
-    cache: "no-store",
-  });
+  const response = await fetch(`${process.env.SSR_BASE_URL}/aws/mp4/api`);
   return response.json();
 }
 
