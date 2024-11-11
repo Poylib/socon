@@ -21,8 +21,9 @@ const SCDream = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "socon | 소콘 스튜디오",
-  description: "Studio SOCON Professional Commercial Photo Studio",
+  title: "소콘 스튜디오 | socon",
+  description:
+    "건축사진, 프로필 영상, 인테리어 촬영, 인테리어 영상 소콘 스튜디오",
   openGraph: {
     images: [
       {

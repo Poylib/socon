@@ -1,8 +1,9 @@
 "use client";
-import { DataType } from "@/app/aws/jpg/api/route";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
+
+import { DataType } from "@/app/aws/jpg/api/route";
 
 interface PhotoCardProps {
   photo: DataType;
@@ -10,17 +11,14 @@ interface PhotoCardProps {
 
 export default function PhotoCard({ photo }: PhotoCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const router = useRouter();
 
-  const goDetail = () => {
-    const formattedPlace = photo.place.replace(/\s+/g, "_");
-    router.push(`jpg/${formattedPlace}?category=${photo.category}`);
-  };
+  const formattedPlace = photo.place.replace(/\s+/g, "_");
 
   return (
-    <div
-      className="relative h-[210px] w-[100%] sm:h-[280px] md:h=[360px] overflow-hidden hover:cursor-pointer"
-      onClick={goDetail}
+    <Link
+      href={`jpg/${formattedPlace}?category=${photo.category}`}
+      title={photo.place}
+      className="relative h-[210px] w-[100%] sm:h-[280px] md:h=[360px] overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -42,6 +40,6 @@ export default function PhotoCard({ photo }: PhotoCardProps) {
         <span className="mb-8">{photo.category}</span>
         <span className="text-xl">{photo.place}</span>
       </div>
-    </div>
+    </Link>
   );
 }

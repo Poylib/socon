@@ -66,7 +66,7 @@ export default function TopScroll() {
         end: "+=250",
       },
     });
-    pictures.forEach((el, idx) => {
+    pictures.forEach((_, idx) => {
       if (idx === 0 || idx === 9) {
         growTl
           .to(
@@ -146,14 +146,14 @@ export default function TopScroll() {
             </Fragment>
           );
         })}
-        <span
-          className="glowTitle absolute top-[15%] transform translate-y-[40px] opacity-0 text-black text-xl font-semibold md:text-3xl"
+        <h1
+          className="glowTitle absolute top-[15%] transform translate-y-10 opacity-0 text-black text-xl font-semibold md:text-3xl"
           style={{ letterSpacing: 5 }}
         >
           So Concretus!
-        </span>
+        </h1>
         <span
-          className="glowContent absolute top-[25%] px-2 transform translate-y-[20px] opacity-0 text-black text-center text-[10px] md:text-xl"
+          className="glowContent absolute top-[25%] px-2 transform translate-y-5 opacity-0 text-black text-center text-[10px] md:text-xl"
           style={{ lineHeight: 1.6, letterSpacing: 0.8 }}
         >
           현대 건축의 상징이자 미학의 한 축을 이루는 콘크리트

@@ -23,7 +23,7 @@ export default function Process() {
   ];
 
   return (
-    <div className="flex flex-col items-center my-[80px] md:justify-start">
+    <div className="flex flex-col items-center my-20 md:justify-start">
       <h2 className="mb-12 text-2xl md:text-4xl" style={{ letterSpacing: 2 }}>
         PROCESS
       </h2>
