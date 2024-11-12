@@ -1,8 +1,17 @@
-import PhotoGrid from "../components/category/PhotoGrid";
-import { getCategories } from "./action";
+import PhotoGrid from "@/app/components/category/PhotoGrid";
+import { getCategories } from "../action";
 
-export default async function Category() {
+interface Props {
+  params: {
+    category: string;
+  };
+}
+
+export default async function Page({ params }: Props) {
+  const { category } = params;
   const { data } = await getCategories();
+
+  const filteredData = data.filter((photo) => photo.category === category);
 
   const jsonLdData = {
     "@context": "https://schema.org",
@@ -10,7 +19,7 @@ export default async function Category() {
     name: "소콘 스튜디오",
     description:
       "개인 촬영으로 진행된 건축 사진 컬렉션에는 다양한 빌딩 사진과 인테리어 사진이 포함되어 있으며, 상업 사진을 전문으로 하는 출장 사진 서비스도 제공합니다.",
-    mainEntity: data.map((photo) => {
+    mainEntity: filteredData.map((photo) => {
       return {
         "@type": "ImageObject",
         contentUrl: `https://socon.kr/jpg/${
@@ -27,7 +36,7 @@ export default async function Category() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
       />
-      <PhotoGrid data={data} />
+      <PhotoGrid data={filteredData} />
     </section>
   );
 }

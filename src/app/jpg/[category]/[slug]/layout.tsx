@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${decodedSlug} | socon`,
-    description: `${decodedSlug} 갤러리`,
+    description: `${decodedSlug}의 건축, 인테리어, 상업적 공간 사진을 제공합니다. 출장 촬영 서비스와 함께 다양한 구도에서 촬영된 고퀄리티 이미지를 만나보세요.`,
   };
 }
 

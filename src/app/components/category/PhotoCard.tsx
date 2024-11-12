@@ -16,7 +16,7 @@ export default function PhotoCard({ photo }: PhotoCardProps) {
 
   return (
     <Link
-      href={`jpg/${formattedPlace}?category=${photo.category}`}
+      href={`jpg/${photo.category}/${formattedPlace}`}
       title={photo.place}
       className="relative h-[210px] w-[100%] sm:h-[280px] md:h=[360px] overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
@@ -25,6 +25,7 @@ export default function PhotoCard({ photo }: PhotoCardProps) {
       <Image
         src={photo.url}
         fill={true}
+        title={`${photo.place} 사진`}
         className="transition-scale duration-500"
         style={{ objectFit: "cover", scale: isHovered ? 1.2 : 1 }}
         alt="photo"

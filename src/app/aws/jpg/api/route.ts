@@ -35,7 +35,7 @@ export async function GET() {
     },
     {
       url: "JPG/Commercial/양산_어느_커피/양산_어느_커피_0.jpg",
-      place: "양산 어느_커피",
+      place: "양산 어느 커피",
       category: "Commercial",
     },
     {

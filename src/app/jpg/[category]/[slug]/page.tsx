@@ -3,8 +3,6 @@ import Image from "next/image";
 interface Props {
   params: {
     slug: string;
-  };
-  searchParams: {
     category: string;
   };
 }
@@ -34,16 +32,34 @@ async function getContentList({
   return response.json();
 }
 
-export default async function Category({ params, searchParams }: Props) {
-  const { category } = searchParams;
-  const { slug } = params;
+export default async function Page({ params }: Props) {
+  const { slug, category } = params;
   let decodedSlug = decodeURIComponent(slug);
   decodedSlug = decodedSlug.replace(/_/g, " ");
 
   const { Contents } = await getContentList({ category, slug });
 
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    name: decodedSlug,
+    description: "소콘 스튜디오 사진 컬렉션",
+    creator: {
+      "@type": "Person",
+      name: "Jihoon Han",
+    },
+    datePublished: new Date(
+      new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" })
+    ).toISOString(),
+    contentUrl: `https://socon.kr/jpg/${category}/${slug}`,
+  };
+
   return (
     <section className=" w-[100%] py-[70px] px-6 max-w-screen-md min-h-[100vh]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
+      />
       {Contents?.map((el, idx) => {
         const SRC = `https://${process.env.CLOUDFRONT_URL}/${el.Key}`;
         return (
@@ -53,8 +69,8 @@ export default async function Category({ params, searchParams }: Props) {
             height="0"
             sizes="100vw"
             className="w-full h-auto mb-4"
-            alt={`${decodedSlug} ${idx}번째 이미지`}
-            title={`${decodedSlug} ${idx}번째 이미지`}
+            alt={`${decodedSlug} 사진 ${idx}`}
+            title={`${decodedSlug} 사진`}
             key={`${idx}`}
             loading="lazy"
             placeholder="blur"
