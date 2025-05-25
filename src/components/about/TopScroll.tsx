@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { Fragment, useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from 'next/image';
+import { Fragment, useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import Picture1 from "@@/about/about_2_2.jpeg";
-import Picture1z from "@@/about/about_2_2_z.jpeg";
-import Picture2 from "@@/about/about_1_1.jpeg";
-import Picture3 from "@@/about/about_1_2.jpeg";
-import Picture4 from "@@/about/about_1_3.jpeg";
-import Picture5 from "@@/about/about_2_1.jpg";
-import Picture6 from "@@/about/about_2_3.jpeg";
-import Picture7 from "@@/about/about_3_1.jpeg";
-import Picture8 from "@@/about/about_3_2.jpeg";
-import Picture9 from "@@/about/about_3_3.jpeg";
+import Picture1 from '@@/about/about_2_2.jpeg';
+import Picture1z from '@@/about/about_2_2_z.jpeg';
+import Picture2 from '@@/about/about_1_1.jpeg';
+import Picture3 from '@@/about/about_1_2.jpeg';
+import Picture4 from '@@/about/about_1_3.jpeg';
+import Picture5 from '@@/about/about_2_1.jpg';
+import Picture6 from '@@/about/about_2_3.jpeg';
+import Picture7 from '@@/about/about_3_1.jpeg';
+import Picture8 from '@@/about/about_3_2.jpeg';
+import Picture9 from '@@/about/about_3_3.jpeg';
 
-import styles from "./TopScroll.module.scss";
+import styles from './TopScroll.module.scss';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -62,8 +62,8 @@ export default function TopScroll() {
       scrollTrigger: {
         trigger: container.current,
         scrub: 1.5,
-        start: "top 0%",
-        end: "+=250",
+        start: 'top 0%',
+        end: '+=250',
       },
     });
     pictures.forEach((_, idx) => {
@@ -74,21 +74,21 @@ export default function TopScroll() {
             {
               duration: 1,
 
-              height: "100vh",
-              width: "100vw",
+              height: '100vh',
+              width: '100vw',
               opacity: 1,
             },
-            "<"
+            '<',
           )
           .to(
             `.picture${idx}`,
             {
               duration: 1,
-              height: "100vh",
-              width: "100vw",
+              height: '100vh',
+              width: '100vw',
               opacity: 1,
             },
-            "<"
+            '<',
           );
       } else
         growTl.to(
@@ -98,18 +98,18 @@ export default function TopScroll() {
             scale: 4,
             opacity: 1,
           },
-          "<"
+          '<',
         );
     });
 
     growTl
-      .to(".glowTitle", {
+      .to('.glowTitle', {
         duration: 0.4,
         delay: -0.7,
         opacity: 1,
         y: 0,
       })
-      .to(".glowContent", {
+      .to('.glowContent', {
         duration: 0.3,
         delay: -0.4,
         opacity: 1,
@@ -125,7 +125,7 @@ export default function TopScroll() {
             <Fragment key={index}>
               <div className={`picture${index} ${styles.el}`}>
                 <div
-                  className={`${index === 0 || index === 9 ? "center" : ""} ${
+                  className={`${index === 0 || index === 9 ? 'center' : ''} ${
                     styles.imageContainer
                   }`}
                 >
@@ -135,10 +135,10 @@ export default function TopScroll() {
                     alt="image"
                     placeholder="blur"
                     style={{
-                      objectFit: "cover",
-                      imageRendering: "crisp-edges",
+                      objectFit: 'cover',
+                      imageRendering: 'crisp-edges',
                     }}
-                    sizes={index === 9 ? "100vw" : "40vw"}
+                    sizes={index === 9 ? '100vw' : '40vw'}
                     loading="lazy"
                   />
                 </div>

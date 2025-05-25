@@ -1,11 +1,11 @@
-import Image from "next/image";
-import SNSConnect from "../components/contact/SNSConnect";
+import Image from 'next/image';
+import SNSConnect from '@/components/contact/SNSConnect';
 
 export default async function Contact() {
   const arr = [
-    { title: "E-mail", content: "soocn_us@naver.com" },
-    { title: "Mobile", content: "+82 10-8199-6398" },
-    { title: "SNS", content: "" },
+    { title: 'E-mail', content: 'soocn_us@naver.com' },
+    { title: 'Mobile', content: '+82 10-8199-6398' },
+    { title: 'SNS', content: '' },
   ];
 
   return (

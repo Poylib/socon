@@ -27,6 +27,9 @@
       ],
       "@@/*": [
         "./public/*"
+      ],
+      "@/components/*": [
+        "./src/components/*"
       ]
     },
     "target": "ES2017"
