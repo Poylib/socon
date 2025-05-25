@@ -1,0 +1,32 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# 프로젝트 구조 가이드
+
+이 프로젝트는 Next.js 기반의 웹 애플리케이션입니다.
+
+## 주요 디렉토리 구조
+
+- `src/app`: Next.js 13+ App Router 구조의 메인 페이지와 라우팅
+- `src/components`: 재사용 가능한 UI 컴포넌트
+- `src/store`: 상태 관리 관련 코드
+- `src/style`: 전역 스타일 및 테마 설정
+- `src/lib`: 유틸리티 함수들
+- `src/constants`: 상수 값들
+
+## 주요 파일
+
+- [src/app/page.tsx](mdc:src/app/page.tsx): 메인 페이지 컴포넌트
+- [src/app/layout.tsx](mdc:src/app/layout.tsx): 루트 레이아웃 컴포넌트
+
+## 스타일링
+
+- Tailwind CSS를 사용하여 스타일링
+- 설정 파일: [tailwind.config.ts](mdc:tailwind.config.ts)
+
+## 개발 환경
+
+- TypeScript 사용
+- ESLint로 코드 품질 관리

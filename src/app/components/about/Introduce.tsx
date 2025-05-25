@@ -33,7 +33,7 @@ export default function Introduce() {
             <div className="relative">
               <Image
                 src={el.src}
-                className="h-33 w-[100%]"
+                className="h-33 w-full"
                 style={{
                   objectFit: "cover",
                 }}

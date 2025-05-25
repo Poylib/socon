@@ -18,7 +18,7 @@ export default function PhotoCard({ photo }: PhotoCardProps) {
     <Link
       href={`jpg/${photo.category}/${formattedPlace}`}
       title={photo.place}
-      className="relative h-[210px] w-[100%] sm:h-[280px] md:h=[360px] overflow-hidden"
+      className="relative h-[210px] w-full sm:h-[280px] md:h=[360px] overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

@@ -138,7 +138,7 @@ export default function Carousel() {
 
   return (
     <div
-      className={`absolute flex flex-col justify-center items-center h-[100dvh] w-screen transition duration-[2s]`}
+      className={`absolute flex flex-col justify-center items-center h-dvh w-screen transition duration-[2s]`}
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
     >
@@ -164,13 +164,13 @@ export default function Carousel() {
           />
         </div>
         <div
-          className={`absolute h-[100%] w-[100%] md:h-[500px] md:w-[380px] max-md:max-h-[392px] max-md:max-w-[280px] overflow-hidden`}
+          className={`absolute h-full w-full md:h-[500px] md:w-[380px] max-md:max-h-[392px] max-md:max-w-[280px] overflow-hidden`}
         >
           {pictures.map((el, idx) => {
             const selected = idx === panel;
             return (
               <div
-                className={`absolute h-[100%] w-[100%] md:h-[560px] md:w-[400px]`}
+                className={`absolute h-full w-full md:h-[560px] md:w-[400px]`}
                 style={{
                   zIndex: selected ? 10 : 0,
                   transition: selected ? "transform 2s" : "none",
@@ -207,7 +207,7 @@ export default function Carousel() {
         >
           0{panel + 1}
         </span>
-        <div className="mx-2 h-full w-[1px] bg-gray-500" />
+        <div className="mx-2 h-full w-px bg-gray-500" />
         <span className="text-gray-500">06</span>
       </div>
       {/* for web */}
@@ -218,7 +218,7 @@ export default function Carousel() {
         >
           0{panel + 1}
         </span>
-        <div className="h-[1px] w-10 bg-gray-500 my-3" />
+        <div className="h-px w-10 bg-gray-500 my-3" />
         <span className="text-gray-500">06</span>
       </div>
       <span className="absolute top-[43%] left-5  w-[120px] h-[120px] transform -rotate-90 max-md:hidden">

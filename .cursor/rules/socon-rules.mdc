@@ -1,0 +1,97 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# socon 스튜디오 사이트 프로젝트 개요 및 데이터 구조
+
+---
+
+## 프로젝트 설명
+
+- **목적**
+  socon 스튜디오의 회사 소개 및 포트폴리오 제공 사이트 구축
+  사진 및 영상 포트폴리오를 효과적으로 관리하고 사용자에게 제공하는 것이 주 목적
+
+- **기술 스택**
+  - 프론트엔드: Next.js
+  - Style : TailwindCSS, Shadcn
+  - 백엔드: Next.js API Routes (풀스택 개발)
+    - 기존에 aws s3에 연결되는 로직이 있으나, API Routes 와 supabase로 교체하면서 레거시처리할 예정
+  - 데이터베이스 및 사진 저장: Supabase (PostgreSQL + Storage)
+  - 배포: Vercel
+  - 관리자 페이지: 동일 도메인 내 숨겨진 라우트로 구현 예정
+
+---
+
+## 프로젝트 주요 페이지
+
+- about
+- jpg
+  - 카테고리별(Individual, Commercial, Interior) 분류
+  - 장소 단위 썸네일 그리드 → 클릭 시 장소별 상세 사진 목록 페이지 이동
+- mp4
+- admin
+  - 콘텐츠(사진, 장소, 카테고리) 관리
+  - 이미지 업로드 및 정렬 순서 지정
+  - 라우트 숨김 및 인증 기반 접근 제한 계획
+    - 구글 로그인을 통해 특정 계정만 접근 가능하도록 설정
+- price
+    - 촬영상품 별 가격명시
+    - 지역별 출장비
+- contact
+
+---
+
+## 데이터베이스 스키마
+
+### 1. photo_categories (사진 카테고리)
+
+| 필드 | 설명 |
+|---|---|
+| id | 카테고리 고유 ID (UUID or Integer) |
+| name | 카테고리명 (예: Individual) |
+| slug | URL 친화적 문자열 (예: individual) |
+
+---
+
+### 2. photo_locations (장소 단위 사진 그룹)
+
+| 필드 | 설명 |
+|---|---|
+| id | 장소 고유 ID |
+| name | 장소 이름 (예: 하와이 웨딩) |
+| category_id | photo_categories.id 참조 |
+| thumbnail_url | 썸네일 이미지 URL |
+| order | 격자식 그리드 내 정렬 순서 |
+| description | 장소에 대한 간단한 설명 (선택) |
+
+---
+
+### 3. photos (개별 사진 정보)
+
+| 필드 | 설명 |
+|---|---|
+| id | 사진 고유 ID |
+| location_id | photo_locations.id 참조 |
+| url | 이미지 URL (Supabase Storage 등) |
+| order | 상세 페이지 내 정렬 순서 |
+| caption | 사진 설명 (선택) |
+
+---
+
+## 개발 및 배포 흐름 (간략)
+
+1. Supabase에 테이블 및 Storage 세팅
+2. Next.js API Route로 CRUD 기능 개발
+3. 사용자 페이지 (메인, 포트폴리오, 상세 사진 목록) 개발
+4. 관리자 페이지 (숨겨진 라우트, 인증 포함) 개발
+5. Vercel 배포 및 운영
+
+---
+
+## 기타 참고사항
+
+- 이미지 URL은 Supabase Storage에 저장 후, DB에 URL 기록
+- 정렬(order) 필드를 사용해 화면 내 사진 및 장소 노출 순서 조절
+- TailwindCSS를 사용해 모바일, 웹 반응형 및 모던 UI 구성

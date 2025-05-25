@@ -1,10 +1,10 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
     category: string;
-  };
+  }>;
 }
 
 type Content = {
@@ -19,48 +19,49 @@ interface ContentListRes {
   Contents: Content[];
 }
 
-async function getContentList({
-  category,
-  slug,
-}: {
-  category: string;
-  slug: string;
-}): Promise<ContentListRes> {
-  const response = await fetch(
-    `${process.env.SSR_BASE_URL}/aws/slug/api?category=${category}&slug=${slug}`
-  );
-  return response.json();
-}
+// async function getContentList({
+//   category,
+//   slug,
+// }: {
+//   category: string;
+//   slug: string;
+// }): Promise<ContentListRes> {
+//   const response = await fetch(
+//     `${process.env.SSR_BASE_URL}/aws/slug/api?category=${category}&slug=${slug}`,
+//   );
+//   return response.json();
+// }
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const { slug, category } = params;
   let decodedSlug = decodeURIComponent(slug);
-  decodedSlug = decodedSlug.replace(/_/g, " ");
+  decodedSlug = decodedSlug.replace(/_/g, ' ');
 
-  const { Contents } = await getContentList({ category, slug });
+  // const { Contents } = await getContentList({ category, slug });
 
   const jsonLdData = {
-    "@context": "https://schema.org",
-    "@type": "ImageObject",
+    '@context': 'https://schema.org',
+    '@type': 'ImageObject',
     name: decodedSlug,
-    description: "소콘 스튜디오 사진 컬렉션",
+    description: '소콘 스튜디오 사진 컬렉션',
     creator: {
-      "@type": "Person",
-      name: "Jihoon Han",
+      '@type': 'Person',
+      name: 'Jihoon Han',
     },
     datePublished: new Date(
-      new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" })
+      new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }),
     ).toISOString(),
-    contentUrl: `https://socon.kr/jpg/${category}/${slug}`,
+    // contentUrl: `https://socon.kr/jpg/${category}/${slug}`,
   };
 
   return (
-    <section className=" w-[100%] py-[70px] px-6 max-w-screen-md min-h-[100vh]">
+    <section className=" w-full py-[70px] px-6 max-w-(--breakpoint-md) min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
       />
-      {Contents?.map((el, idx) => {
+      {/* {Contents?.map((el, idx) => {
         const SRC = `https://${process.env.CLOUDFRONT_URL}/${el.Key}`;
         return (
           <Image
@@ -77,7 +78,7 @@ export default async function Page({ params }: Props) {
             blurDataURL={SRC}
           />
         );
-      })}
+      })} */}
     </section>
   );
 }
