@@ -1,9 +1,19 @@
 import { Fragment } from "react";
 import { MP4Res } from "../aws/mp4/api/route";
 
+const mp4UrlSet = [
+  { url: "MP4/0.mp4", thumbnail: "MP4/0.jpeg" },
+  { url: "MP4/1.mp4", thumbnail: "MP4/1.jpeg" },
+  { url: "MP4/2.mp4", thumbnail: "MP4/2.jpeg" },
+];
+
 async function getContentList(): Promise<{ data: MP4Res[] }> {
-  const response = await fetch(`${process.env.SSR_BASE_URL}/aws/mp4/api`);
-  return response.json();
+  const data: MP4Res[] = mp4UrlSet.map((set, index) => ({
+    index,
+    url: `https://${process.env.CLOUDFRONT_URL}/${set.url}`,
+    thumbnail: `https://${process.env.CLOUDFRONT_URL}/${set.thumbnail}`,
+  }));
+  return { data };
 }
 
 export default async function MP4() {
