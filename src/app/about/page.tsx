@@ -42,7 +42,7 @@ export default function About() {
   return (
     <main ref={mainRef} className="pt-[70px] h-fit">
       <TopScroll />
-      <Introduce />
+      {/* <Introduce /> */}
       <Process />
       <Footer />
     </main>
